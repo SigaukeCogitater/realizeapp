@@ -80,67 +80,7 @@ app.post('/idea', (req, res) => {
         });
 });
 
-//signup route
-
-// app.post('/signup', (req, res) => {
-//     const newUser = {
-//         email: req.body.email,
-//         password: req.body.password,
-//         confirmPassword: req.body.confirmPassword,
-//         userName: req.body.userName, //user id
-//         name: req.body.name,
-//         accountType: req.body.accountType
-//     };
-
-// //validate data
-//     let token, userId
-//     db.doc('/users/${newUser.userName}').get()
-//         .then(doc => {
-//             if(doc.exists){
-//                 return res.status(400).json({userName: 'userName is already taken'});
-//             }else{
-//                 return firebase
-//                 .auth()
-//                 .createUserWithEmailAndPassword(newUser.email, newUser.password);
-//             }
-
-//         }).then((data) => {
-//             userId = data.user.udi;
-//             return data.user.getIdToken();
-        
-//         }).then((idToken) => {
-//             token = idToken;
-//             const userCredentials = {
-//                 userName: newUser.userName,
-//                 email: newUser.email,
-//                 createdAt: new Date().toISOString(),
-//                 userId
-
-//             };
-//             return db.doc('/users/${newUser.userName}').set(userCredentials);
-
-//         }).then(()=>{
-//             return res.status(201).json({token});
-
-//         })
-//         .catch((err) => {
-//             console.error(err);
-//             if(err.code === 'auth/email-already-in-use'){
-//                 return res.status(400).json({email: 'Email aready in use'})
-//             }else{
-//                 return res.status(500).json({error: err.code});
-
-//             }
-            
-
-//         });
-
-// });
-
-//--------------------------------------------------------//
-
-
-// Sign users up
+// company signup route
 app.post('/signup/company', (req, res) => {
     const newUser = {
         email: req.body.email,
@@ -148,17 +88,10 @@ app.post('/signup/company', (req, res) => {
         confirmPassword: req.body.confirmPassword,
         userName: req.body.userName, //user id
         companyName: req.body.companyName,
+        companySite: req.body.companySite,
         phoneNumber: req.body.phoneNumber,
         accountType: req.body.accountType
     };
-    /*email: req.body.email,
-    password: req.body.password,
-    confirmPassword: req.body.confirmPassword,
-    userName: req.body.userName, //user id
-    companyName: req.body.companyName,
-    phoneNumber: req.body.phoneNumber,
-    accountType: req.body.accountType,
-    companySite: req.body.companySite*/
     let token, userId;
     db.doc(`/companyUsers/${newUser.userName}`)
       .get()
@@ -179,8 +112,9 @@ app.post('/signup/company', (req, res) => {
         token = idToken;
         const userCredentials = {
           userName: newUser.userName,
-          companyName: req.body.companyName,
-          phoneNumber: req.body.phoneNumber,
+          companyName: newUser.companyName,
+          companySite: newUser.companySite,
+          phoneNumber: newUser.phoneNumber,
           email: newUser.email,
           createdAt: new Date().toISOString(),
           userId
@@ -203,12 +137,7 @@ app.post('/signup/company', (req, res) => {
   });
 
 
-
-  //-------------------------------------------------------------//
-
-
-
-
+//personal signup route
 
 app.post('/signup/personal', (req, res) => {
     const newUser = {
@@ -263,72 +192,6 @@ app.post('/signup/personal', (req, res) => {
         }
       });
   });
-
-
-
-
-
-
-//---------------------------------------------------------//
-/*
-//CompanySignup
-
-// Sign users up
-app.post('/companySignup', (req, res) => {
-    const newUser = {
-        email: req.body.email,
-        password: req.body.password,
-        confirmPassword: req.body.confirmPassword,
-        userName: req.body.userName, //user id
-        lastName: req.body.lastName,
-        firstName: req.body.firstName,
-        accountType: req.body.accountType
-    };
-
-    let token, userId;
-    db.doc(`/companyUsers/${newUser.userName}`)
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          return res.status(400).json({ userName: 'this userName is already taken' });
-        } else {
-          return firebase
-            .auth()
-            .createUserWithEmailAndPassword(newUser.email, newUser.password);
-        }
-      })
-      .then((data) => {
-        userId = data.user.uid;
-        return data.user.getIdToken();
-      })
-      .then((idToken) => {
-        token = idToken;
-        const userCredentials = {
-          userName: newUser.userName,
-          lastName: req.body.lastName,
-          firstName: req.body.firstName,
-          email: newUser.email,
-          createdAt: new Date().toISOString(),
-          userId
-        };
-        return db.doc(`/companyUsers/${newUser.userName}`).set(userCredentials);
-      })
-      .then(() => {
-        return res.status(201).json({ token });
-      })
-      .catch((err) => {
-        console.error(err);
-        if (err.code === 'auth/email-already-in-use') {
-          return res.status(400).json({ email: 'Email already in use' });
-        } else {
-          return res
-            .status(500)
-            .json({ general: 'Error: Something went wrong, please try again' });
-        }
-      });
-  });
-
-*/
 
 
 //https://baseurl.com/api/
