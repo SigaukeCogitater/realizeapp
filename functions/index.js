@@ -30,6 +30,8 @@ firebase.initializeApp(config);
 
 const db = admin.firestore();
 
+//get ideas collection
+
 app.get('/ideas', (req, res) => {
     db.collection('ideas')
     .orderBy('createdAt', 'desc')
@@ -56,6 +58,8 @@ app.get('/ideas', (req, res) => {
 
 
 })
+
+//post idea route
 
 app.post('/idea', (req, res) => {
 
@@ -126,11 +130,15 @@ app.post('/signup/company', (req, res) => {
     }
     if(isEmpty(newUser.phoneNumber)){
       errors.phoneNumber = "must not be empty"
-    }
+    }                                                                                                                                                                                                                                         
     if(isEmpty(newUser.companySite)){
       errors.companySite = "must not be empty"
     }
-    if(isEmpty(newUser.password !== newUser.confirmPassword)) {
+    if(isEmpty(newUser.confirmPassword)){
+      errors.confirmPassword = "must not be empty"
+    }
+    
+    if(newUser.password !== newUser.confirmPassword) {
       errors.confirmPassword = "password must match";
     }
     if(Object.keys(errors).length > 0){
@@ -197,6 +205,38 @@ app.post('/signup/personal', (req, res) => {
         firstName: req.body.firstName,
         accountType: req.body.accountType
     };
+    const errors = {};
+    if(isEmpty(newUser.email)){
+      errors.email = "Email must not be empty";
+    }else if(!isEmail(newUser.email)){
+      errors.email = "must be a valid email address";
+    }
+    /*newUser.forEach(key){
+
+    };*/
+    // consider using foreach
+    if(isEmpty(newUser.password)){
+      errors.password = "must not be empty"
+    }
+    if(isEmpty(newUser.userName)){
+      errors.userName = "must not be empty"
+    }
+    if(isEmpty(newUser.firstName)){
+      errors.firstName = "must not be empty"
+    }
+    if(isEmpty(newUser.lastName)){
+      errors.lastName = "must not be empty"
+    }
+    if(isEmpty(newUser.confirmPassword)){
+      errors.confirmPassword = "must not be empty"
+    }
+    
+    if(newUser.password !== newUser.confirmPassword) {
+      errors.confirmPassword = "password must match";
+    }
+    if(Object.keys(errors).length > 0){
+      return res.status(400).json(errors);
+    }
 
     let token, userId;
     db.doc(`/users/${newUser.userName}`)
@@ -241,7 +281,44 @@ app.post('/signup/personal', (req, res) => {
       });
   });
 
+//login route
 
+app.post('/login', (req, res) => {
+
+  const user = {
+    email: req.body.email,
+    password: req.body.password
+  };
+
+  const errors = {};
+
+  if(isEmpty(user.email)) errors.email = "Must not be empty";
+  if(isEmpty(user.password)) errors.password = "Must not be empty";
+
+  if(Object.keys(errors).length > 0) return res.status(400).json(errors);
+
+  firebase.auth()
+    .signInWithEmailAndPassword(user.email, user.password)
+    .then((data) => {
+      return data.user.getIdToken();
+    })
+    .then((token) => {
+      return res.json({token});
+    })
+    .catch((err) => {
+      console.error(err);
+      if(error.code === 'auth/wrong-password'){
+        return res.status(403).json({general: 'Wrong Password, try again'});
+      }else{
+        return res.status(500).json({error: err.code});
+      }
+    });
+  
+
+
+
+
+});
 //https://baseurl.com/api/
 
  exports.api = functions.region('asia-northeast1').https.onRequest(app);

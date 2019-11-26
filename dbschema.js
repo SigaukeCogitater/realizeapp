@@ -17,7 +17,7 @@ let db = {
             userName: "The New Company",
             password: "123456789",
             confirmPassword: "123456789",
-            companyName: "eq.body.lastName",
+            companyName: "My Company",
             companySite: "www.newcompany.com",
             phoneNumber: "07738982323"
         }
