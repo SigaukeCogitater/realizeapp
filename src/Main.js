@@ -5,16 +5,18 @@ import SignIn from './SignIn.js'
 class Main extends Component {
     render(){
         return(
-            <div>main</div>
+            <NavigationBar/>
         )
     }
 }
-
+notDecidedYet = () => {}
 class NavigationBar extends Component{
     render() {
         return(
             <div>
-                
+                <div onClick={this.notDecidedYet/*See all ideas */}>All Ideas</div>
+                <div onClick={this.notDecidedYet/*Go to My Page*/}>My Page</div>
+                <div onClick={this.notDecidedYet/*See competitions */}>Competitions</div>
             </div>
         )
     }
