@@ -1,7 +1,7 @@
 const {admin, db}  = require('./admin');
-//const db = require('./admin');
 
-module.exports = (req, res, next) =>{
+exports.FBAuth = (req, res, next) =>{
+
     let idToken;
     if(req.headers.authorization && req.headers.authorization.startsWith('Bearer ')){
       idToken = req.headers.authorization.split('Bearer ')[1];
@@ -13,8 +13,10 @@ module.exports = (req, res, next) =>{
   
     admin.auth().verifyIdToken(idToken)
       .then(decodedToken => {
+        
         req.user = decodedToken;
-        console.log(decodedToken);
+        
+        //console.log(decodedToken);
         return db.collection('users').where('userId', '==', req.user.uid)
           .limit(1)
           .get();
