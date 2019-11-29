@@ -6,20 +6,17 @@ const {getAllIdeas, postIdea} = require('./handlers/ideas');
 const FBAuth = require('./util/fbAuth');
 // const admin = require('firebase-admin');
 
-const {companySignup, personalSignup, login} = require('./handlers/users');
+const {companySignup, personalSignup, login, uploadImage} = require('./handlers/users');
 
 // Idea routes
 
 app.get('/ideas', getAllIdeas);
 app.post('/idea', FBAuth, postIdea);
 
-// signup routes
+// user routes
 app.post('/signup/company', companySignup);
-
 app.post('/signup/personal', personalSignup);
-
-//login route
-
 app.post('/login', login);
+app.post('/user/image', uploadImage);
 
 exports.api = functions.region('asia-northeast1').https.onRequest(app);
