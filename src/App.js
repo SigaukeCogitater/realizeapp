@@ -10,6 +10,7 @@ class App extends Component {
     <div>
       <Route exact path='/' component={SignIn}/>
       <Route exact path='/main' component={Main}/>
+      <Route exact path='/companysignup' component={SignUp}/>
     </div>
     </BrowserRouter>
     )
