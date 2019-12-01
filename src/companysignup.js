@@ -1,15 +1,15 @@
 
 import React from "react";
-import Email from "./Email";
-import Nickname from "./Nickname";
-import Password from "./Password";
+//import Email from "./Email";
+// import Nickname from "./Nickname";
+// import Password from "./Password";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 
 class companysignup extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
+  //constructor(props){
+    //super(props);
+    state = {
       email: "",
       nickname: "",
       pw: "",
@@ -18,7 +18,7 @@ class companysignup extends React.Component {
       nicknameCheck: "",
       pwCheck: ""
     };
-  }
+  //}
   //handling email input box
   handleEmail = e => {
     e.preventDefault();
@@ -194,23 +194,27 @@ class companysignup extends React.Component {
         <h1>Signup</h1>
         <br />
         <div>
-          <Email
-            handleEmail={this.handleEmail}
-            checkEmail={this.checkEmail}
-            value={this.state.email}
-          />
-          <Nickname
-            handleNickname={this.handleNickname}
-            checkNickname={this.checkNickname}
-            value={this.state.nickname}
-          />
-          <Password
-            handlePW={this.handlePW}
-            handleRE_PW={this.handleRE_PW}
-            checkPW={this.checkPW}
-            value1={this.state.pw}
-            value2={this.state.re_pw}
-          />
+          Email: <input
+            type="text"
+            onChange={this.handleEmail} 
+            value={this.state.email}/>
+            <input type="button" onClick={this.checkEmail} value="verify"/>
+          Nickname: <input
+            type = "text"
+            onChange={this.handleNickname}
+            value={this.state.nickname}/>
+            <input type="button" onClick={this.checkNickname} value="check nickname"/>
+          
+          Password: <input
+            type = "password"
+            onChange={this.handlePW}
+            value={this.state.pw}/>
+          Repassword: <input
+            type = "password"
+            onChange={this.handleRE_PW}
+            value={this.state.re_pw}/>
+            <input type="button" onClick={this.checkPW} value="check password"/>
+          
           <div>
             <button onClick={this.handleSubmit}>Submit</button>
           </div>
@@ -252,5 +256,4 @@ class companysignup extends Component{
         );
     }
 }*/
-
 
