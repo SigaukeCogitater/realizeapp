@@ -1,16 +1,31 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
 import {Route} from 'react-router-dom'
 import SignIn from './SignIn.js'
 
 class Main extends Component {
+    state ={
+        RecentIdeas: {},
+        Competitions: {}
+    }
     render(){
         return(
-            <NavigationBar/>
+            <Fragment>
+                <NavigationBar/>
+                <div>
+                    <title>All Ideas</title>
+                    <div id="ideaPosts"></div>
+                </div>
+                <div>
+                    <title>Competitinos</title>
+                    <div id="competitionPosts"></div>
+                </div>
+            </Fragment>
         )
     }
 }
-notDecidedYet = () => {}
+
 class NavigationBar extends Component{
+    notDecidedYet = (e) => {}
     render() {
         return(
             <div>
