@@ -5,7 +5,7 @@ const config = require('../util/config');
 const firebase = require('firebase');
 firebase.initializeApp(config);
 
-const {validateSignupData, validateLoginData} = require('../util/validators');
+const {validateSignupData, validateLoginData, reduceUserInfo} = require('../util/validators');
 
 exports.companySignup = (req, res) => {
     const newUser = {
@@ -177,10 +177,12 @@ exports.companySignup = (req, res) => {
     let imageToBeUploaded = {};
     
     busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
-      console.log(fieldname);
-      console.log(filename);
-      console.log(mimetype);
+      console.log(fieldname,filename,mimetype);
       //image.etx
+      if (mimetype !== 'image/jpeg' && mimetype !== 'image/png'){
+        return res.status(400).json({error: 'Wrong file type submitted'});
+      }
+
       const imageExtension = filename.split('.')[filename.split('.').length - 1];
       
       //242342342432.png
@@ -218,3 +220,50 @@ exports.companySignup = (req, res) => {
     busboy.end(req.rawBody);
 
   }
+
+exports.updateUserInfo = (req, res) => {
+
+    const userInfoDetails = reduceUserInfo(req.data);
+
+    db.doc(`/users/${req.user.userName}`).update(userInfoDetails)
+      .then(() => {
+
+        return res.json({message: 'user details updated successfully'});
+
+      }).catch((err) => {
+
+        console.log(err);
+        return res.status(500).json({error: err.code});
+
+
+      });
+  };
+
+exports.getUserDetails = (req, res) => {
+
+  let userData = {};
+
+  db.doc(`users/${req.user.userName}`).get()
+    .then(doc => {
+      if(doc.exists){
+        userData.credentials = doc.data();
+        return db.collection('likes').where('userName', '==', req.user.userName)
+          .get();
+      }
+    }).then(data => {
+      userData.likes = [];
+      data.forEach(doc => {
+        userData.likes.push(doc.data());
+      });
+      return res.json(userData);
+    }).catch(err => {
+      console.error(err);
+      return res.status(500).json({erro: err.code});
+
+
+    });
+
+};
+
+
+
