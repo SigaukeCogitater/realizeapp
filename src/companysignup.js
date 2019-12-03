@@ -4,12 +4,16 @@ import React from "react";
 // import Nickname from "./Nickname";
 // import Password from "./Password";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+const databaseURL = "https://console.firebase.google.com/project/realizeapp-cd0a5/";
 
 class companysignup extends React.Component {
   //constructor(props){
     //super(props);
     state = {
+      id: "",
+      companyname:"",
+      companysitelink:"",
+      phonenumber:"",
       email: "",
       nickname: "",
       pw: "",
@@ -18,6 +22,39 @@ class companysignup extends React.Component {
       nicknameCheck: "",
       pwCheck: ""
     };
+
+
+  handleid = e =>{
+    e.preventDefault();
+    this.setState({
+      id: e.target.value
+    });
+  };
+  checkid = e=>{
+    const inputid = {
+      id: this.state.id
+    };
+    const id_info = {
+      method: "POST",
+      body: JSON.stringify(inputid),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+    fetch("http://localhost:3000/user/id", id_info)
+        .then(res => res.json())
+        .then(json => {
+          if (json === true) {
+            alert("You can use this id");
+            this.setState({
+              idCheck: this.state.id
+            });
+          } else {
+            alert("This id is already existed");
+          }
+        });
+  }
+
   //}
   //handling email input box
   handleEmail = e => {
@@ -30,10 +67,10 @@ class companysignup extends React.Component {
   checkEmail = e => {
     e.preventDefault();
     //function of checking email is constant
-    const chkEmail = function(str) {
-      var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-      return regExp.test(str) ? true : false;
-    };
+    // const chkEmail = function(str) {
+    //   var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    //   return regExp.test(str) ? true : false;
+    // };
     const inputEmail = {
       email: this.state.email
     };
@@ -44,13 +81,8 @@ class companysignup extends React.Component {
         "Content-Type": "application/json"
       }
     };
-    if (chkEmail(this.state.email) === false) {
-      alert("Email format is invalid.");
-      this.setState({
-        email: ""
-      });
-    } else {
-      fetch("http://localhost:3000/user/email", email_info)
+    //fetch("https://console.firebase.google.com/project/realizeapp-cd0a5/users", email_info)
+    fetch("http://localhost:3000/user/email", email_info)
         .then(res => res.json())
         .then(json => {
           if (json === true) {
@@ -62,8 +94,27 @@ class companysignup extends React.Component {
             alert("This id is already existed");
           }
         });
-    }
-  };
+  }
+    // if (chkEmail(this.state.email) === false) {
+    //   alert("Email format is invalid.");
+    //   this.setState({
+    //     email: ""
+    //   });
+    // } else {
+    //   fetch("http://localhost:3000/user/email", email_info)
+    //     .then(res => res.json())
+    //     .then(json => {
+    //       if (json === true) {
+    //         alert("You can use this id");
+    //         this.setState({
+    //           emailCheck: this.state.email
+    //         });
+    //       } else {
+    //         alert("This id is already existed");
+    //       }
+    //     });
+    // }
+ 
   //handling email input box
   handleNickname = e => {
     e.preventDefault();
@@ -75,7 +126,6 @@ class companysignup extends React.Component {
   checkNickname = e => {
     e.preventDefault();
     const chkNickname = function(str) {
-      ///---------------------------------------------------korean here
       var regNm = /^[가-힣]{2,15}|[a-zA-Z]{2,15}\s[a-zA-Z]{2,15}$/;
       return regNm.test(str) ? true : false;
     };
@@ -88,12 +138,13 @@ class companysignup extends React.Component {
       headers: {
         "Content-Type": "application/json"
       }
+    
     };
     if (chkNickname(this.state.nickname) === false) {
       //alert("한글,영문 대소문자 2~15자리만 사용 가능합니다");
       alert("korean, english upper and smaller 2~15 is accessable.");
     } else {
-      fetch("http://localhost:3000/user/nick", nickname_info)
+      const resp =fetch("http://localhost:3000/user/nick", nickname_info)
         .then(res => res.json())
         .then(json => {
           if (json === true) {
@@ -191,20 +242,31 @@ class companysignup extends React.Component {
   render() {
     return (
       <div>
-        <h1>Signup</h1>
-        <br />
+        <h1>Company Signup</h1>
+        <br/>
         <div>
-          Email: <input
+          <p>
+          ID : <input
+            type="text"
+            onChange={this.handleid}
+            value={this.state.id}/>
+            <input type="button" onClick={this.checkid} value="check id"/>
+          </p>
+          <p>
+          Manager Email: <input
             type="text"
             onChange={this.handleEmail} 
             value={this.state.email}/>
             <input type="button" onClick={this.checkEmail} value="verify"/>
+          </p>
+          <p>
           Nickname: <input
             type = "text"
             onChange={this.handleNickname}
             value={this.state.nickname}/>
             <input type="button" onClick={this.checkNickname} value="check nickname"/>
-          
+          </p>
+          <p>
           Password: <input
             type = "password"
             onChange={this.handlePW}
@@ -214,7 +276,7 @@ class companysignup extends React.Component {
             onChange={this.handleRE_PW}
             value={this.state.re_pw}/>
             <input type="button" onClick={this.checkPW} value="check password"/>
-          
+          </p>
           <div>
             <button onClick={this.handleSubmit}>Submit</button>
           </div>
