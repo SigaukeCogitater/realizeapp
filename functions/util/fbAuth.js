@@ -22,10 +22,12 @@ exports.FBAuth = (req, res, next) =>{
           .get();
       }).then(data => {
         req.user.userName = data.docs[0].data().userName;
+        req.user.accountType = data.docs[0].data().accountType;
+        req.user.imageUrl = data.docs[0].data().imageUrl;
         return next();
       }).catch(err => {
         console.error('Error while verifying ', err);
-        return res.status(400).json(err);
+        return res.status(403).json(err);
       });
   
   }
