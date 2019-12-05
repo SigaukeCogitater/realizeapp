@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PersonalSignup from './personalsignup.js'
-
+import Switch from '@material-ui/core/Switch';
 class personalsignup extends React.Component {
     //constructor(props){
       //super(props);
@@ -17,8 +17,10 @@ class personalsignup extends React.Component {
         re_pw: "",
         emailCheck: "",
         nicknameCheck: "",
-        pwCheck: ""
+        pwCheck: "",
+
       };
+
 
 
       handlefirstname = e => {
@@ -83,6 +85,7 @@ class personalsignup extends React.Component {
           birthday: e.target.value
         });
       };
+
 
       render(){
           return(
