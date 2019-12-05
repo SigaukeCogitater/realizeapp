@@ -15,10 +15,7 @@ class personalsignup extends React.Component {
         birthday:"",
         pw: "",
         re_pw: "",
-        emailCheck: "",
-        nicknameCheck: "",
-        pwCheck: "",
-
+        accountType: 2
       };
 
 
@@ -85,6 +82,42 @@ class personalsignup extends React.Component {
           birthday: e.target.value
         });
       };
+
+      handleSubmit = e =>{
+        e.preventDefault();
+        const{
+          id,
+          phonenumber,
+          email,
+          nickname,
+          firstname,
+          lastname,
+          birthday,
+          pw,
+          re_pw,
+          accountType
+        } = this.state;
+      const personalsignupInfo = {
+        id = this.state.id,
+        phonenumber = this.state.phonenumber,
+        email = this.state.email,
+        nickname = this.state.nickname,
+        firstname =this.state.firstname,
+        lastname = this.state.lastname,
+        birthday = this.state.birthday,
+        pw = this.state.pw,
+        re_pw = this.state.re_pw,
+        accountType = this.state.accountType
+      };
+      const personalsignup_info = {
+        method: "POST",
+        body: JSON.stringify(personalsignupInfo),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
+      fetch("https://asia-northeast1-realizeapp-cd0a5.cloudfunctions.net/api/users/personalSingup", personalsignup_info);
+    }
 
 
       render(){
@@ -156,6 +189,5 @@ class personalsignup extends React.Component {
             </div>
           );
       }
-
 }
 export default personalsignup;
