@@ -4,7 +4,6 @@ import React from "react";
 // import Nickname from "./Nickname";
 // import Password from "./Password";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-const databaseURL = "https://console.firebase.google.com/project/realizeapp-cd0a5/";
 
 class companysignup extends React.Component {
   //constructor(props){
@@ -15,12 +14,13 @@ class companysignup extends React.Component {
       companysitelink:"",
       phonenumber:"",
       email: "",
-      nickname: "",
+      //nickname: "",
       pw: "",
       re_pw: "",
       emailCheck: "",
       nicknameCheck: "",
-      pwCheck: ""
+      pwCheck: "",
+      accountType: 1
     };
 
 
@@ -33,6 +33,7 @@ class companysignup extends React.Component {
   checkid = e=>{
     const inputid = {
       id: this.state.id
+      ///here whole information
     };
     const id_info = {
       method: "POST",
@@ -41,7 +42,7 @@ class companysignup extends React.Component {
         "Content-Type": "application/json"
       }
     };
-    fetch("http://localhost:3000/user/id", id_info)
+    fetch("https://asia-northeast1-realizeapp-cd0a5.cloudfunctions.net/api/signup/company", id_info)
         .then(res => res.json())
         .then(json => {
           if (json === true) {
