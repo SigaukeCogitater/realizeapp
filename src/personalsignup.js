@@ -98,16 +98,16 @@ class personalsignup extends React.Component {
           accountType
         } = this.state;
       const personalsignupInfo = {
-        id = this.state.id,
-        phonenumber = this.state.phonenumber,
-        email = this.state.email,
-        nickname = this.state.nickname,
-        firstname =this.state.firstname,
-        lastname = this.state.lastname,
-        birthday = this.state.birthday,
-        pw = this.state.pw,
-        re_pw = this.state.re_pw,
-        accountType = this.state.accountType
+        id : this.state.id,
+        phonenumber : this.state.phonenumber,
+        email : this.state.email,
+        nickname : this.state.nickname,
+        firstname : this.state.firstname,
+        lastname : this.state.lastname,
+        birthday : this.state.birthday,
+        pw : this.state.pw,
+        re_pw : this.state.re_pw,
+        accountType : this.state.accountType
       };
       const personalsignup_info = {
         method: "POST",
