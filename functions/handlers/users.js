@@ -156,11 +156,10 @@ exports.companySignup = (req, res) => {
       })
       .catch((err) => {
         console.error(err);
-        if(err.code === 'auth/wrong-password'){
-          return res.status(403).json({general: 'Wrong Password, try again'});
-        }else{
-          return res.status(500).json({error: err.code});
-        }
+        //auth/wrong-password'
+        //auth/user-not-found'
+        return res.status(403).json({general: 'Wrong credentials, please try again'});
+    
       });
   }
 
@@ -265,7 +264,7 @@ exports.getUserDetails = (req, res) => {
               userImage: doc.data().userImage,
               commentCount: doc.data().commentCount,
               likeCount: doc.data().likeCount,
-              ideaId: doc.userId
+              ideaId: doc.id
               
             });
 
@@ -325,5 +324,20 @@ exports.getAuthenticatedUserDetails = (req, res) => {
 
 };
 
+exports.markNotificationRead = (req, res) => {
+  let batch = db.batch();
+  req.body.forEach(notificationId => {
+    const notifications = db.doc(`/notifications/${notificationId}`);
+    batch.update(notifications, {read: true});
+  });
+  batch.commit()
+    .then(() => {
+      return res.json({message: 'Notifications marked read'});
+    })
+    .catch((err) => {
+      console.error(err);
+      return req.status(500).json({error: err.code});
+    });
 
+};
 

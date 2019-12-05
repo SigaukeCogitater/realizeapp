@@ -16,6 +16,7 @@ exports.getAllIdeas = (req, res) => {
                     createdAt: doc.data().createdAt,
                     likesCount: doc.data().likesCount,
                     commentsCount: doc.data().commentsCount,
+                    userImage: doc.data().userImage,
                     userName: doc.data().userName
 
                 });
@@ -95,9 +96,9 @@ exports.getIdea = (req, res) => {
 //comment on idea
 
 exports.commentOnIdea = (req, res) => {
-    console.log("----------visited----------");
+    
     if(req.body.body.trim() === ''){
-        return res.status(400).json({error: "Must not be empty"});
+        return res.status(400).json({comment: "Must not be empty"});
     }
     const newComment = {
         userName: req.body.user,
@@ -110,7 +111,6 @@ exports.commentOnIdea = (req, res) => {
     db.doc(`/ideas/${req.params.ideaId}`).get()
         .then(doc => {
             if(!doc.exists){
-                console.log("----------visited----------")
                 return res.status(404).json({error: "Idea not found"});
             }
             return db.collection('comments').add(newComment);
