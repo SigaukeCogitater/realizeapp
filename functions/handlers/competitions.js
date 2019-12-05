@@ -42,13 +42,16 @@ exports.postCompetition = (req, res) => {
         author: req.body.author,
         dueDate: req.body.dueDate,
         userName: req.user.userName,
-        createdAt: new Date().toDateString()
+        userImage: req.user.imageUrl,
+        createdAt: new Date().toISOString()
     };
     
     db.collection('competitions')
         .add(newCompetition)
         .then((doc) => {
-            res.json({message: `document ${doc.id} created successfully`});
+            const resNewCompetition = newCompetition;
+            resNewCompetition.competionId = doc.id;
+            res.json(resNewCompetition);
      
         })
         .catch((err) => {
@@ -99,7 +102,7 @@ exports.postCommentOnCompetition = (req, res) => {
         userName: req.user.userName,
         competitionId: req.params.competitionId,
         body: req.body.body,
-        createdAt: new Date().toDateString(),
+        createdAt: new Date().toISOString(),
         userImage: req.user.imageUrl
     };
     

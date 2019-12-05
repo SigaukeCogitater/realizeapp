@@ -5,7 +5,10 @@ const {
     getAllIdeas, 
     postIdea, 
     postCommentOnIdea,
-    getIdea
+    getIdea,
+    likeIdea,
+    unlikeIdea,
+    deleteIdea
 } = require('./handlers/ideas');
 const { 
     getAllCompetitions, 
@@ -21,7 +24,9 @@ const {
     login, 
     uploadImage, 
     updateUserInfo,
+    getAuthenticatedUserDetails,
     getUserDetails
+    // markNotificationRead
     } = require('./handlers/users');
 const { db } = require('./util/admin');
 
@@ -40,7 +45,10 @@ const { db } = require('./util/admin');
 app.get('/ideas', getAllIdeas);
 app.post('/idea', FBAuth, postIdea);
 app.get('/idea/:ideaId', getIdea);
+app.delete('/idea/:ideaId', FBAuth, deleteIdea);
 app.post('/idea/:ideaId/comment', FBAuth, postCommentOnIdea);
+app.get('/idea/:ideaId/like', FBAuth, likeIdea);
+app.get('/idea/:ideaId/unlike', FBAuth, unlikeIdea);
 
 // app.post('/comment', FBAuth, commentOnIdea);
 // Competion routesx    
@@ -51,16 +59,116 @@ app.get('/competitions', getAllCompetitions);
 app.get('/competition/:competitionId', getCompetition);
 app.post('/competition/:competitionId/comment', FBAuth, postCommentOnCompetition);
 
+
 // user routes
 app.post('/signup/company', companySignup);
 app.post('/signup/personal', personalSignup);
 app.post('/login', login);
 app.post('/user/image', FBAuth, uploadImage);
 app.post('/update', FBAuth, updateUserInfo);
-app.get('/user', FBAuth, getUserDetails);
+app.get('/user', FBAuth, getAuthenticatedUserDetails);
+app.get('/user/:userName', getUserDetails);
+// app.post('/notifications', FBAuth, markNotificationRead);
 
 
 exports.api = functions.region('asia-northeast1').https.onRequest(app);
+
+exports.createNotificationOnLike = functions.region('asia-northeast1')
+    .firestore.document(`likes/{id}`)
+    .onCreate((snapeshot) => {
+        db.doc(`/ideas/${snapeshot.data().ideaId}`).get()
+            .then(doc => {
+                if(doc.exists){
+                    return db.doc(`/notifications/${snapeshot.id}`).set({
+                        recipient: doc.data().userName,
+                        sender: snapeshot.data().userName,
+                        read: false,
+                        ideaId: doc.id,
+                        type: 'like',
+                        createdAt: new Date().toISOString()
+                    })
+                }
+            })
+            .then(() => {
+                return;
+            })
+            .catch(err => {
+                console.error(err);
+                return;
+            });
+    });
+
+exports.deleteNotificationOnUnlike = functions.region('asia-northeast1')
+    .firestore.document(`likes/{id}`)
+    .onDelete((snapeshot) => {
+    db.doc(`/notifications/${snapeshot.id}`)
+        .delete()
+        .then(doc => {
+            return;
+        })
+        .catch(err => {
+            console.error(err);
+            return;
+
+        });
+    }
+);    
+
+exports.createNotificationOnComment = functions.region('asia-northeast1')
+    .firestore.document(`comments/{id}`)
+    .onCreate((snapeshot) => {
+        db.doc(`/ideas/${snapeshot.data().ideaId}`).get()
+            .then(doc => {
+                if(doc.exists){
+                    return db.doc(`/notifications/${snapeshot.id}`).set({
+                        recipient: doc.data().userName,
+                        sender: snapeshot.data().userName,
+                        read: false,
+                        ideaId: doc.id,
+                        type: 'comment',
+                        createdAt: new Date().toISOString()
+                    })
+                }
+            })
+            .then(() => {
+                return;
+            })
+            .catch(err => {
+                console.error(err);
+                return;
+            });
+    });
+
+
+exports.createNotificationOnRegistration = functions.region('asia-northeast1')
+    .firestore.document(`registrations/{id}`)
+    .onCreate((snapeshot) => {
+        db.doc(`/competitions/${snapeshot.data().ideaId}`).get()
+            .then(doc => {
+                if(doc.exists){
+                    return db.doc(`/notifications/${snapeshot.id}`).set({
+                        recipient: doc.data().userName,
+                        sender: snapeshot.data().userName,
+                        read: false,
+                        ideaId: doc.id,
+                        type: 'register',
+                        createdAt: new Date().toISOString()
+                    })
+                }
+            })
+            .then(() => {
+                return;
+            })
+            .catch(err => {
+                console.error(err);
+                return;
+            });
+    });
+
+
+
+
+
 // exports.addToIndex = functions.region('asia-northeast1').https.onRequest((req, res) => {
 
 //     var arr = [];

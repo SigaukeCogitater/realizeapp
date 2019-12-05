@@ -38,6 +38,18 @@ let db = {
             body: 'nice idea',
             createdAt: "2019-11-24T22:22:16.558Z"
         }        
+    ],
+    notifications: [
+        {
+            recipient: 'user',
+            sender: 'mhamha',
+            read: 'true | false',
+            ideaId: 'jaksjdhakjshdakjshdkauwqueh',
+            type: 'like | comment | register',
+            createdAt: "2019-11-24T22:22:16.558Z"
+        }
+
+
     ]
 
 }

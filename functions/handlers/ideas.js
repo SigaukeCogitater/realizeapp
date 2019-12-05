@@ -38,16 +38,19 @@ exports.postIdea = (req, res) => {
         userName: req.user.userName,
         description: req.body.description,
         category: req.body.category,
+        userImage: req.user.imageUrl,
         likesCount: 0,
         commentsCount: 0,
-        createdAt: new Date().toDateString()
+        createdAt: new Date().toISOString()
         
     };
 
     db.collection('ideas')
         .add(newIdea)
         .then((doc) => {
-            res.json({message: `document ${doc.id} created successfully`});
+            const resIdea = newIdea;
+            resIdea.ideaId = doc.id;
+            res.json(resIdea);
      
         })
         .catch((err) => {
@@ -56,10 +59,6 @@ exports.postIdea = (req, res) => {
         });
 }
 
-exports.postAnswer = (req, res ) =>{
-    console.log(req.body);
-    req.body.json({success: "done"});
-}
 // fetch idea
 
 exports.getIdea = (req, res) => {
@@ -104,7 +103,7 @@ exports.commentOnIdea = (req, res) => {
         userName: req.body.user,
         ideaId: req.params.ideaId,
         body: req.body.body,
-        createdAt: new Date().toDateString(),
+        createdAt: new Date().toISOString(),
         userImage: req.user.imageUrl
     };
     console.log("----------visited----------");
@@ -137,19 +136,23 @@ exports.postCommentOnIdea = (req, res) => {
         userName: req.user.userName,
         ideaId: req.params.ideaId,
         body: req.body.body,
-        createdAt: new Date().toDateString(),
+        createdAt: new Date().toISOString(),
         userImage: req.user.imageUrl
     };
     
     db.doc(`/ideas/${req.params.ideaId}`).get()
         .then(doc => {
             if(!doc.exists){
-                console.log("----------visited----------")
+                // console.log("----------visited----------")
                 return res.status(404).json({error: "Idea not found"});
             }
-            return db.collection('comments').add(newComment);
+            return doc.ref.update({commentsCount: doc.data().commentsCount + 1});
 
-        }).then(() => {
+        })
+        .then(() => {
+            return db.collection('comments').add(newComment);
+        })      
+        .then(() => {
             res.json(newComment);
         }).catch(err => {
             console.log(err);
@@ -157,3 +160,120 @@ exports.postCommentOnIdea = (req, res) => {
         }); 
 }
 
+exports.likeIdea = (req, res) => {
+    //console.log(res.cors);
+    const likeDocument = db.collection('likes')
+        .where('userName', '==', req.user.userName)
+        .where('ideaId', '==', req.params.ideaId)
+        .limit(1);
+
+    const ideaDocument = db.doc(`ideas/${req.params.ideaId}`);
+
+    let ideaData;
+
+    ideaDocument.get()
+        .then(doc => {
+
+            if(doc.exists){
+                ideaData = doc.data();
+                ideaData.ideaId = doc.id;
+                return likeDocument.get();
+                
+            }else{
+                return res.status(404).json({error: 'Idea not found'});
+
+            }
+        }).then(data => {
+            if(data.empty){
+                return db.collection('likes').add({
+                    ideaId: req.params.ideaId,
+                    userName: req.user.userName
+                })
+                .then(()=> {
+                    ideaData.likesCount++;
+                    return ideaDocument.update({likesCount: ideaData.likesCount});
+                })
+                 .then(()=> {
+                    return res.json(ideaData);
+                 });
+                
+            }else {
+                res.status(400).json({error: 'Idea already liked' });
+            }
+
+        }).catch((err) => {
+            console.error(err);
+            res.status(500).json({error: err.code});
+
+        });
+
+};
+
+exports.unlikeIdea = (req, res) => {
+    const likeDocument = db.collection('likes')
+    .where('userName', '==', req.user.userName)
+    .where('ideaId', '==', req.params.ideaId)
+    .limit(1);
+
+    const ideaDocument = db.doc(`ideas/${req.params.ideaId}`);
+
+    let ideaData;
+
+    ideaDocument.get()
+        .then(doc => {
+
+            if(doc.exists){
+                ideaData = doc.data();
+                ideaData.ideaId = doc.id;
+                return likeDocument.get();
+
+            }else{
+                return res.status(404).json({error: 'Idea not found'});
+
+            }
+        }).then(data => {
+            if(data.empty){
+
+                return res.status(400).json({error: 'Idea already unliked' });
+                
+            }else {
+                return db.doc(`/likes/${data.docs[0].id}`).delete()
+                    .then(() => {
+                        ideaData.likesCount--;
+                        return ideaDocument.update({likesCount: ideaData.likesCount});
+                    })
+                    .then(() => {
+                        res.json(ideaData);
+                    })
+            }
+
+        }).catch((err) => {
+            console.error(err);
+            res.status(500).json({error: err.code});
+
+    });
+}
+
+exports.deleteIdea = (req, res) => {
+
+    const ideaDocument = db.doc(`/ideas/${req.params.ideaId}`);
+    ideaDocument.get()
+        .then(doc => {
+            if(!doc.exists){
+                return res.status(404).json({error: 'Idea not found'});
+            }
+            if(doc.data().userName !== req.user.userName){
+                return res.status(403).json({error: 'Unauthorized'});
+            }else{
+                ideaDocument.delete();
+            }
+        })
+        .then(() => {
+            res.json({message: 'Idea deleted successfully'});
+            
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({error: err.code});
+        });
+};

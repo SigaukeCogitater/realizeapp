@@ -238,8 +238,49 @@ exports.updateUserInfo = (req, res) => {
 
       });
   };
+//Get another user's details
 
 exports.getUserDetails = (req, res) => {
+
+  let userData = {};
+  db.doc(`users/${req.params.userName}`).get()
+    .then(doc => {
+      if(doc.exists){
+        userData.user = doc.data();
+        return db.collection('ideas').where('userName', '==', req.params.userName)
+          .orderBy('createdAt', 'desc')
+          .get();
+
+      }else{
+        return res.status(400).json({error: 'User not found'});
+      }
+    })
+      .then(data => {
+          userData.ideas = [];
+          data.forEach(doc => {
+            userData.ideas.push({
+              body: doc.data().body,
+              createdAt: doc.data().createdAt,
+              userName: doc.data().userName,
+              userImage: doc.data().userImage,
+              commentCount: doc.data().commentCount,
+              likeCount: doc.data().likeCount,
+              ideaId: doc.userId
+              
+            });
+
+          });
+          return res.json(userData);
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({error: err.code});
+
+      })
+}
+
+// Get your own details getAuthenticatedUserDetails
+exports.getAuthenticatedUserDetails = (req, res) => {
 
   let userData = {};
 
@@ -255,8 +296,27 @@ exports.getUserDetails = (req, res) => {
       data.forEach(doc => {
         userData.likes.push(doc.data());
       });
-      return res.json(userData);
-    }).catch(err => {
+      return db.collection('notifications').where('recipient', '==', req.user.userName)
+        .orderBy('createdAt', 'desc').limit(10).get();
+    })
+      .then((data) => {
+      
+        userData.notifications = [];
+        data.forEach(doc => {
+          userData.notifications.push({
+            sender: doc.data().sender,
+            recipient: doc.data().recipient,
+            type: doc.data().type,
+            createdAt: doc.data().createdAt,
+            read: doc.data().read,
+            ideaId: doc.data().ideaId,
+            notificationId: doc.id
+          });
+        });
+        return res.json(userData);
+        
+      })
+    .catch(err => {
       console.error(err);
       return res.status(500).json({erro: err.code});
 
