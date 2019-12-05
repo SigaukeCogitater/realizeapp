@@ -5,7 +5,7 @@ const age = document.getElementById('age');
 const addBtn = document.getElementById('addBtn');
 const updateBtn = document.getElementById('updateBtn');
 const removeBtn = document.getElementById('removeBtn');
-
+//comment
 const database = firebase.database();
 const rootRef =database.ref('users');
 
@@ -18,7 +18,7 @@ addBtn.addEventListener('click',(e)=>{
         age:age.value,
 
     })
-}); 
+});
 
 updateBtn.addEventListener('click',(e) => {
     e.preventDefault();
@@ -43,7 +43,7 @@ removeBtn.addEventListener('click',(e) => {
         console.error(error);
     });
     //database.ref('/Company-users').child(userId.value).remove();
-    
+
 });
 
 // rootRef.on('child_added', snapshot => {
