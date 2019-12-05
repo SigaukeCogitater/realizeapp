@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import './SignIn.css'
 import {Route} from 'react-router-dom'
 import Main from './Main.js'
 
@@ -25,15 +26,20 @@ class SignIn extends Component {
         return(
             <form>
                 <title>Realize</title>
-                <div>
+                <div id="SignIn">
                     <h1>Sign In</h1>
                     <p><input id= "ID" placeholder="ID" onChange={this.inputID}></input></p>
                     <p><input type="password" id="Password" placeholder="Password" onChange={this.inputPassword}></input></p>
-                    <input type="button" value="Log In" onClick={this.empty/*check if there's corresponding data in database*/}></input>
+                    <div class="button" onClick={this.empty/*check if there's corresponding data in database*/}>Log In</div>
                     {console.log("Password change:" + this.state.Password)}
                     {console.log("ID change: " + this.state.ID)}
                 </div>
-                <div onClick={this.empty/*go to sign up page*/} > Sign Up </div>
+                <div id="SignUp">
+                    <h1>Sign Up</h1>
+                    <div class="button" onClick={this.empty/*go to sign up page*/} >Personal</div>
+                    <div class="button" onClick={this.empty/*go to sign up page*/} >Company</div>
+                </div>
+                
             </form>
         )
     }
