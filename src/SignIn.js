@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import './SignIn.css'
 import {Route, Link} from 'react-router-dom'
 import Main from './Main.js'
 
@@ -30,8 +29,9 @@ class SignIn extends Component {
             <form>
                 <div id="SignIn">
                     <h1>Sign In</h1>
-                    <p><input id= "ID" placeholder="ID" onChange={this.inputID}></input></p>
-                    <p><input type="password" id="Password" placeholder="Password" onChange={this.inputPassword}></input></p>
+                    <input id= "ID" placeholder="ID" onChange={this.inputID}></input>
+                    <br></br>
+                    <input type="password" id="Password" placeholder="Password" onChange={this.inputPassword}></input>
                     <div class="button" onClick={this.empty/*check if there's corresponding data in database*/}>Log In</div>
                     {console.log("Password change:" + this.state.Password)}
                     {console.log("ID change: " + this.state.ID)}

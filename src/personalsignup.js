@@ -122,7 +122,7 @@ class personalsignup extends React.Component {
 
       render(){
           return(
-              <div>
+              <form class="signUp">
                   <h1>Personal Sign up</h1>
                   <br/>
                   <div>
@@ -186,7 +186,7 @@ class personalsignup extends React.Component {
                         <button onClick={this.handleSubmit}>Submit</button>
                     </div>
                 </div>
-            </div>
+            </form>
           );
       }
 }

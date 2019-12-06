@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
-import './Main.css'
+
 
 class Main extends Component {
     state ={
@@ -11,12 +11,7 @@ class Main extends Component {
         return(
             <Fragment>
                 <NavigationBar/>
-                <div class="posts">
-                    <div id="ideaPosts"></div>
-                </div>
-                <div>
-                    <div id="competitionPosts"></div>
-                </div>
+                <DisplayPosting></DisplayPosting>
             </Fragment>
         )
     }
@@ -29,6 +24,28 @@ export class NavigationBar extends Component{
                 <Link to="./main"><div>All Ideas</div></Link>
                 <Link to="./mypage"><div>My Page</div></Link>
                 <Link to="./competitions"><div>Competitions</div></Link>
+            </div>
+        )
+    }
+}
+
+export class DisplayPosting extends Component {
+    state = {
+        posts: {}
+    }
+    render(){
+        const {posts} = this.state;
+        
+        return(
+            <div class="posts">
+                {Object.keys(posts).map(id => {
+                    return(
+                        <div></div>
+                        )
+                    })
+                }
+                
+
             </div>
         )
     }

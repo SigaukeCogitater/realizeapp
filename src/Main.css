@@ -1,4 +1,39 @@
+/* Default */
+form {
+    flex: 1;
+    flex-flow: row wrap;
+    display: flex;
+    text-align: center;
+    background-color: #282c34;
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+.button {
+    display: block;
+    padding: 10px 100px;
+    margin: 10px;
+    background-color: cornflowerblue;
+    font-size: calc(7px + 2vmin);
+    text-decoration: none
+}
+.button:hover {
+    background-color: steelblue;
+}
+
+
+/* Navigation Bar */
 #bar{
+    flex: 1;
+    flex-direction: column;
+    display: flex;
     text-align: center;
     margin: 0;
     padding: 0;
@@ -8,27 +43,38 @@
     overflow: auto;
     background-color: #282c34;
     font-size: calc(10px + 2vmin);
+    padding-top: 8%;
 }
 #bar div{
     display: block;
-    color: white;
     padding: 35px;
     text-decoration: none;
 }
 #bar div:hover{
     background: rgba(70, 131, 180, 0.459);
 }
-#bar div:active{
+#bar div.active{
     background: steelblue
 }
+
+
+/* Posts align */
 .posts{
     margin-left: 25%;
     padding: 50px
 }
-/* NavigationBar div div:hover{
 
-} */
-/* .NavigationBar:div.active {
-    background-color:steelblue;
-    color: white;
-} */
+/* Sign Up Page */
+.signUp p{
+    text-align: left;
+}
+
+input {
+    font-size: calc(10px + 2vmin);
+    padding: 10px;
+}
+
+/* Sign In Page - box align */
+#SignIn input{
+    margin-bottom: 15px
+}

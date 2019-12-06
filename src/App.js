@@ -6,6 +6,7 @@ import CompanySignUp from './companysignup.js'
 import PersonalSignUp from './personalsignup.js'
 import MyPage from './MyPage.js'
 import Competitions from './Competitions.js'
+import './Main.css'
 //test
 class App extends Component {
   render () {
