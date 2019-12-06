@@ -12,11 +12,11 @@ class Main extends Component {
             <Fragment>
                 <NavigationBar/>
                 <div>
-                    <title>All Ideas</title>
+                    <p1>All Ideas</p1>
                     <div id="ideaPosts"></div>
                 </div>
                 <div>
-                    <title>Competitinos</title>
+                    <p1>Competitinos</p1>
                     <div id="competitionPosts"></div>
                 </div>
             </Fragment>
