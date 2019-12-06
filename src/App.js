@@ -4,6 +4,7 @@ import SignIn from './SignIn.js'
 import Main from './Main.js'
 import CompanySignUp from './companysignup.js'
 import PersonalSignUp from './personalsignup.js'
+import MyPage from './MyPage.js'
 //test
 class App extends Component {
   render () {
@@ -14,6 +15,7 @@ class App extends Component {
       <Route exact path='/main' component={Main}/>
       <Route exact path='/companysignup' component={CompanySignUp}/>
       <Route exact path='/personalsignup' component={PersonalSignUp}/>
+      <Route exact path='/mypage' component={MyPage}/>
     </div>
     </BrowserRouter>
     )

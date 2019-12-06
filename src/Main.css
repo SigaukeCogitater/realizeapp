@@ -1,6 +1,7 @@
 #bar{
     align-items: center;
     text-align: center;
+    min-height: 100vh;
     margin: 0;
     padding: 0;
     width: 25%;
@@ -18,7 +19,10 @@
     text-decoration: none;
 }
 #bar div:hover{
-    background: steelblue;
+    background: rgba(70, 131, 180, 0.459);
+}
+#bar div:active{
+    background: steelblue
 }
 /* NavigationBar div div:hover{
 

@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
-import SignIn from './SignIn.js'
 import './Main.css'
 
 class Main extends Component {
@@ -10,9 +9,9 @@ class Main extends Component {
     }
     render(){
         return(
-            <div>
+            <Fragment>
                 <NavigationBar id="nav"/>
-                <div>
+                <div class="posts">
                     <p1>All Ideas</p1>
                     <div id="ideaPosts"></div>
                 </div>
@@ -20,12 +19,12 @@ class Main extends Component {
                     <p1>Competitinos</p1>
                     <div id="competitionPosts"></div>
                 </div>
-            </div>
+            </Fragment>
         )
     }
 }
 
-class NavigationBar extends Component{
+export class NavigationBar extends Component{
     render() {
         return(
             <div id="bar">
