@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import './SignIn.css'
+import {Route, Link} from 'react-router-dom'
 import Main from './Main.js'
 
 class SignIn extends Component {
@@ -38,6 +39,7 @@ class SignIn extends Component {
                 </div>
                 <div id="SignUp">
                     <h1>Sign Up</h1>
+
                     <a href="/personalsignup"><div class="button">Personal</div></a>
                     <a href="/companysignup"><div class="button">Company</div></a>
                 </div>
