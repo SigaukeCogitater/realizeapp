@@ -1,7 +1,5 @@
 #bar{
-    align-items: center;
     text-align: center;
-    min-height: 100vh;
     margin: 0;
     padding: 0;
     width: 25%;
@@ -14,8 +12,7 @@
 #bar div{
     display: block;
     color: white;
-    margin: 10px;
-    padding: 10px 100 px;
+    padding: 35px;
     text-decoration: none;
 }
 #bar div:hover{
@@ -23,6 +20,10 @@
 }
 #bar div:active{
     background: steelblue
+}
+.posts{
+    margin-left: 25%;
+    padding: 50px
 }
 /* NavigationBar div div:hover{
 

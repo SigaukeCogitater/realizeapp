@@ -2,7 +2,7 @@ import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
 import NavigationBar from './Main.js'
 
-class MyPage extends Component{
+class Competitions extends Component{
     state ={
 
     }
@@ -13,4 +13,4 @@ class MyPage extends Component{
         )
     }
 }
-export default MyPage;
+export default Competitions;

@@ -10,13 +10,11 @@ class Main extends Component {
     render(){
         return(
             <Fragment>
-                <NavigationBar id="nav"/>
+                <NavigationBar/>
                 <div class="posts">
-                    <p1>All Ideas</p1>
                     <div id="ideaPosts"></div>
                 </div>
                 <div>
-                    <p1>Competitinos</p1>
                     <div id="competitionPosts"></div>
                 </div>
             </Fragment>
@@ -28,9 +26,9 @@ export class NavigationBar extends Component{
     render() {
         return(
             <div id="bar">
-                <div><Link to="./main">All Ideas</Link></div>
-                <div><Link to="./mypage">My Page</Link></div>
-                <div><Link to="./competitions">Competitions</Link></div>
+                <Link to="./main"><div>All Ideas</div></Link>
+                <Link to="./mypage"><div>My Page</div></Link>
+                <Link to="./competitions"><div>Competitions</div></Link>
             </div>
         )
     }
