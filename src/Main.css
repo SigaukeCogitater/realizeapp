@@ -1,0 +1,16 @@
+.NavigationBar:div{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    background-color: #282c34;
+    height: 100%; 
+    position: fixed;
+    overflow: auto;
+}
+.NavigationBar:div.active {
+    background-color:steelblue;
+    color: white;
+}

@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from "react";
-import {Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import SignIn from './SignIn.js'
+import './Main.css'
 
 class Main extends Component {
     state ={
@@ -12,11 +13,11 @@ class Main extends Component {
             <Fragment>
                 <NavigationBar/>
                 <div>
-                    <title>All Ideas</title>
+                    <p1>All Ideas</p1>
                     <div id="ideaPosts"></div>
                 </div>
                 <div>
-                    <title>Competitinos</title>
+                    <p1>Competitinos</p1>
                     <div id="competitionPosts"></div>
                 </div>
             </Fragment>
@@ -25,13 +26,12 @@ class Main extends Component {
 }
 
 class NavigationBar extends Component{
-    notDecidedYet = (e) => {}
     render() {
         return(
-            <div>
-                <div onClick={this.notDecidedYet/*See all ideas */}>All Ideas</div>
-                <div onClick={this.notDecidedYet/*Go to My Page*/}>My Page</div>
-                <div onClick={this.notDecidedYet/*See competitions */}>Competitions</div>
+            <div id="bar">
+                <div><Link to="./main">All Ideas</Link></div>
+                <div><Link to="./mypage">My Page</Link></div>
+                <div><Link to="./competitions">Competitions</Link></div>
             </div>
         )
     }

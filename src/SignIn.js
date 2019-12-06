@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import './SignIn.css'
-import {Route} from 'react-router-dom'
 import Main from './Main.js'
 
 class SignIn extends Component {
@@ -20,6 +19,9 @@ class SignIn extends Component {
         });
         
     }
+    goTo = () => {
+        
+    }
 
     empty= (e) =>{}
     render() {
@@ -36,8 +38,8 @@ class SignIn extends Component {
                 </div>
                 <div id="SignUp">
                     <h1>Sign Up</h1>
-                    <div class="button" onClick={this.empty/*go to sign up page*/} >Personal</div>
-                    <div class="button" onClick={this.empty/*go to sign up page*/} >Company</div>
+                    <a href="/personalsignup"><div class="button">Personal</div></a>
+                    <a href="/companysignup"><div class="button">Company</div></a>
                 </div>
                 
             </form>
