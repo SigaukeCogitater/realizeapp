@@ -15,6 +15,10 @@ input {
   font-size: calc(10px + 2vmin);
   padding: 10px;
 }
+a{
+  text-decoration: none;
+  color: white;
+}
 .button {
   display: block;
   padding: 10px 100px;
@@ -22,6 +26,9 @@ input {
   background-color: steelblue;
   font-size: calc(7px + 2vmin);
   text-decoration: none
+}
+.button:hover {
+  background-color: rgb(114, 180, 235);
 }
 .App-link {
   color: #09d3ac;

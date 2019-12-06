@@ -28,7 +28,6 @@ class SignIn extends Component {
     render() {
         return(
             <form>
-                <title>Realize</title>
                 <div id="SignIn">
                     <h1>Sign In</h1>
                     <p><input id= "ID" placeholder="ID" onChange={this.inputID}></input></p>
