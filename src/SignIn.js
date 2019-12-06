@@ -38,11 +38,9 @@ class SignIn extends Component {
                 </div>
                 <div id="SignUp">
                     <h1>Sign Up</h1>
-
                     <a href="/personalsignup"><div class="button">Personal</div></a>
                     <a href="/companysignup"><div class="button">Company</div></a>
                 </div>
-                
             </form>
         )
     }

@@ -10,8 +10,8 @@ class Main extends Component {
     }
     render(){
         return(
-            <Fragment>
-                <NavigationBar/>
+            <div>
+                <NavigationBar id="nav"/>
                 <div>
                     <p1>All Ideas</p1>
                     <div id="ideaPosts"></div>
@@ -20,7 +20,7 @@ class Main extends Component {
                     <p1>Competitinos</p1>
                     <div id="competitionPosts"></div>
                 </div>
-            </Fragment>
+            </div>
         )
     }
 }

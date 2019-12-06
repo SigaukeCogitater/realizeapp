@@ -23,12 +23,12 @@ a{
   display: block;
   padding: 10px 100px;
   margin: 10px;
-  background-color: steelblue;
+  background-color: cornflowerblue;
   font-size: calc(7px + 2vmin);
   text-decoration: none
 }
 .button:hover {
-  background-color: rgb(114, 180, 235);
+  background-color: steelblue;
 }
 .App-link {
   color: #09d3ac;
