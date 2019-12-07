@@ -1,10 +1,11 @@
 import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
+import Idea from './components/idea'
 
 class Main extends Component {
     state ={
-        posts: []
+        posts: {1: {title: "title", content: "content"}}
     }
     render(){
         const {posts} = this.state
@@ -43,12 +44,12 @@ export class DisplayPosting extends Component {
     }
     render(){
         const {posts} = this.state;
-        
+        console.log(posts);
         return(
             <div class="posts">
                 { posts && Object.keys(posts).map(id => {
                     return(
-                        <div></div>
+                        <Idea id={id}/>
                         )
                     })
                 }

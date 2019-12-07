@@ -1,7 +1,5 @@
 import React from "react";
-import './writeidea.css';
-import WriteIdea from './writeidea.js'
-import myFirebase from './config';
+import myFirebase from '../config';
 
 class writeidea extends React.Component{
     state = {

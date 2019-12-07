@@ -59,6 +59,19 @@ a{
 
 
 /* Posts align */
+.post{
+    display: block;
+    box-shadow: 0 1% 2% 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 30%
+}
+.post:hover{
+    box-shadow: 0 2% 4% 0 rgba(0,0,0,0.2);
+}
+
+.content{
+    padding: 2px 16px
+}
 .posts{
     margin-left: 25%;
     padding: 50px
@@ -77,4 +90,17 @@ input {
 /* Sign In Page - box align */
 #SignIn input{
     margin-bottom: 15px
+}
+
+/* Write Page */
+#des {
+    background: white;
+    width: 1062px;
+    height: 300px;
+}
+
+#title{
+    background: white;
+    width: 1024px;
+    height: 10px;
 }

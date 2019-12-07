@@ -1,6 +1,6 @@
 
 import React from "react";
-import myFirebase from "./config";
+import myFirebase from "../config";
 //import Email from "./Email";
 // import Nickname from "./Nickname";
 // import Password from "./Password";
