@@ -13,6 +13,7 @@ var config = {
     measurementId: "G-9CCRHFDRRB"
 };
 firebase.initializeApp(config);
-myFirebase = firebase.firestore().settings({ timestampsInSnapshots: true})
+const myFirebase = firebase.firestore()
+// .settings({ timestampsInSnapshots: true})
 
 export default myFirebase;

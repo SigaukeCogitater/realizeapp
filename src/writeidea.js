@@ -1,6 +1,8 @@
 import React from "react";
 import './writeidea.css';
 import WriteIdea from './writeidea.js'
+import myFirebase from './config';
+
 class writeidea extends React.Component{
     state = {
         title:"",
@@ -21,6 +23,21 @@ class writeidea extends React.Component{
           title: e.target.value
         });
       };
+
+    handleSubmit = e => {
+      const info = this.state;
+      myFirebase.collection("ideas").add({
+        ...info,
+        authorFirstName: "hi",
+        authorLastName: 'hey',
+        authorId: 1234,
+        createdAt: new Date()
+      }).then(() => {
+        alert("idea added!");
+      }).catch((err) =>{
+        alert("error");
+      })
+    };
 
     render(){
         return(
