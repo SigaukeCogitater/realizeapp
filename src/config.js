@@ -1,4 +1,7 @@
 import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
+
 var config = {
     apiKey: "AIzaSyAPF4T3omy-3cUlnAZ44dBAVgvcD23EFqs",
     authDomain: "realizeapp-cd0a5.firebaseapp.com",
@@ -10,3 +13,6 @@ var config = {
     measurementId: "G-9CCRHFDRRB"
 };
 firebase.initializeApp(config);
+myFirebase = firebase.firestore().settings({ timestampsInSnapshots: true})
+
+export default myFirebase;
