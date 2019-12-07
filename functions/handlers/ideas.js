@@ -1,6 +1,6 @@
 const { db } = require('../util/admin');
 
-export function getAllIdeas(req, res) {
+exports.getAllIdeas = (req, res) => {
     db.collection('ideas')
     .orderBy('createdAt', 'desc')
     .get()
@@ -32,7 +32,7 @@ export function getAllIdeas(req, res) {
 
 }
 
-export function postIdea (req, res) {
+exports.postIdea = (req, res) => {
 
     const newIdea = {
         body: req.body.body,
@@ -62,7 +62,7 @@ export function postIdea (req, res) {
 
 // fetch idea
 
-export function getIdea(req, res) {
+exports.getIdea = (req, res) => {
     let ideaData = {};
     db.doc(`/ideas/${req.params.ideaId}`)
         .get()
@@ -95,7 +95,7 @@ export function getIdea(req, res) {
 
 //comment on idea
 
-export function commentOnIdea (req, res) {
+exports.commentOnIdea = (req, res) => {
     
     if(req.body.body.trim() === ''){
         return res.status(400).json({comment: "Must not be empty"});
@@ -127,7 +127,7 @@ export function commentOnIdea (req, res) {
 
 
 
-export function postCommentOnIdea (req, res) {
+exports.postCommentOnIdea = (req, res) => {
 
     if(req.body.body.trim() === ''){
         return res.status(400).json({error: "Must not be empty"});
@@ -160,7 +160,7 @@ export function postCommentOnIdea (req, res) {
         }); 
 }
 
-export function likeIdea(req, res) {
+exports.likeIdea = (req, res) => {
     //console.log(res.cors);
     const likeDocument = db.collection('likes')
         .where('userName', '==', req.user.userName)
@@ -209,7 +209,7 @@ export function likeIdea(req, res) {
 
 };
 
-export function unlikeIdea (req, res) {
+exports.unlikeIdea = (req, res) => {
     const likeDocument = db.collection('likes')
     .where('userName', '==', req.user.userName)
     .where('ideaId', '==', req.params.ideaId)
@@ -254,7 +254,7 @@ export function unlikeIdea (req, res) {
     });
 }
 
-export function deleteIdea (req, res) {
+exports.deleteIdea = (req, res) => {
 
     const ideaDocument = db.doc(`/ideas/${req.params.ideaId}`);
     ideaDocument.get()
