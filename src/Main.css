@@ -28,7 +28,6 @@ a{
     background-color: steelblue;
 }
 
-
 /* Navigation Bar */
 #bar{
     flex: 1;
@@ -63,7 +62,10 @@ a{
     display: block;
     box-shadow: 0 1% 2% 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 30%
+    width: 350px;
+    height: 300px;
+    background-color: blanchedalmond;
+    margin: 30px;
 }
 .post:hover{
     box-shadow: 0 2% 4% 0 rgba(0,0,0,0.2);
@@ -74,9 +76,16 @@ a{
 }
 .posts{
     margin-left: 25%;
-    padding: 50px
+    padding: 7%;
+    flex: 1;
+    justify-content: center;
+    flex-flow: row wrap;
+    background-color: darksalmon;
 }
-
+/* My Page */
+#writeidea {
+    
+}
 /* Sign Up Page */
 .signUp p{
     text-align: left;

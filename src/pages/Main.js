@@ -5,7 +5,8 @@ import Idea from './components/idea'
 
 class Main extends Component {
     state ={
-        posts: {1: {title: "title", content: "content"}}
+        posts: {1: {title: "title", content: "content"},
+                2: {title: "title2", content: "content2"}}
     }
     render(){
         const {posts} = this.state
