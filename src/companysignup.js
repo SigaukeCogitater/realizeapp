@@ -244,6 +244,7 @@ class companysignup extends React.Component {
     return (
       <form class="signUp">
         <h1>Company Signup</h1>
+        
         <br/>
         <div>
           <p>
