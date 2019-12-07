@@ -1,19 +1,27 @@
 import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
-
+import { connect } from 'react-redux'
 
 class Main extends Component {
     state ={
-        RecentIdeas: {},
-        Competitions: {}
+        posts: []
     }
     render(){
+        const {posts} = this.state
+        console.log(this.props);
         return(
             <Fragment>
                 <NavigationBar/>
-                <DisplayPosting/>
+                <DisplayPosting posts={posts}/>
             </Fragment>
         )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        ideas: state.idea.ideas,
+        competitions: state.competition.competitions
     }
 }
 
@@ -31,23 +39,21 @@ export class NavigationBar extends Component{
 
 export class DisplayPosting extends Component {
     state = {
-        posts: {}
+        posts: this.props.posts
     }
     render(){
         const {posts} = this.state;
         
         return(
             <div class="posts">
-                {Object.keys(posts).map(id => {
+                { posts && Object.keys(posts).map(id => {
                     return(
                         <div></div>
                         )
                     })
                 }
-                
-
             </div>
         )
     }
 }
-export default Main;
+export default connect(mapStateToProps)(Main);
