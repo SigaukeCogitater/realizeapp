@@ -116,7 +116,9 @@ class personalsignup extends React.Component {
           "Content-Type": "application/json"
         }
       };
-      fetch("https://asia-northeast1-realizeapp-cd0a5.cloudfunctions.net/api/users/personalSingup", personalsignup_info);
+      fetch("https://asia-northeast1-realizeapp-cd0a5.cloudfunctions.net/api/users/personalSingup", personalsignup_info)
+        .then(alert("Signed up successfull."))
+        .then(this.props.history.push("/login"));;
     }
 
 
