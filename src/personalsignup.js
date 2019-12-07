@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PersonalSignup from './personalsignup.js'
 import Switch from '@material-ui/core/Switch';
+import myFirebase from "./config";
 class personalsignup extends React.Component {
     //constructor(props){
       //super(props);
@@ -15,11 +16,8 @@ class personalsignup extends React.Component {
         birthday:"",
         pw: "",
         re_pw: "",
-        accountType: 2
+        accountType: 1
       };
-
-
-
       handlefirstname = e => {
         e.preventDefault();
         this.setState({
@@ -85,41 +83,26 @@ class personalsignup extends React.Component {
 
       handleSubmit = e =>{
         e.preventDefault();
-        const{
-          id,
-          phonenumber,
-          email,
-          nickname,
-          firstname,
-          lastname,
-          birthday,
-          pw,
-          re_pw,
-          accountType
-        } = this.state;
-      const personalsignupInfo = {
-        id : this.state.id,
-        phonenumber : this.state.phonenumber,
-        email : this.state.email,
-        nickname : this.state.nickname,
-        firstname : this.state.firstname,
-        lastname : this.state.lastname,
-        birthday : this.state.birthday,
-        pw : this.state.pw,
-        re_pw : this.state.re_pw,
-        accountType : this.state.accountType
-      };
-      const personalsignup_info = {
-        method: "POST",
-        body: JSON.stringify(personalsignupInfo),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      };
-      fetch("https://asia-northeast1-realizeapp-cd0a5.cloudfunctions.net/api/users/personalSingup", personalsignup_info)
-        .then(alert("Signed up successfull."))
-        .then(this.props.history.push("/login"));;
-    }
+        const info ={
+          id: this.state.id,
+          phonenumber: this.state.phonenumber,
+          email: this.state.email,
+          nickname: this.state.nickname,
+          firstname: this.state.firstname,
+          lastname: this.state.lastname,
+          birthday: this.state.birthday,
+          pw:this.state.pw,
+          re_pw: this.state.re_pw,
+          accountType: this.state.accountType
+        };
+        myFirebase.collection("users").add({
+          ...info
+        }).then(()=>{
+          alert("signed up!");
+        }).catch((err)=>{
+          alert("error");
+        })
+    };
 
 
       render(){

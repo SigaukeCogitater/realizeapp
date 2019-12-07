@@ -18,10 +18,10 @@ class companysignup extends React.Component {
       //nickname: "",
       pw: "",
       re_pw: "",
-      emailCheck: "",
-      nicknameCheck: "",
-      pwCheck: "",
-      accountType: 1
+      //emailCheck: "",
+      //nicknameCheck: "",
+      //pwCheck: "",
+      accountType: 0
     };
 
 
@@ -31,7 +31,7 @@ class companysignup extends React.Component {
       id: e.target.value
     });
   };
-  checkid = e=>{
+  /*checkid = e=>{
     const inputid = {
       id: this.state.id
       ///here whole information
@@ -55,7 +55,12 @@ class companysignup extends React.Component {
             alert("This id is already existed");
           }
         });
-  }
+  }*/
+
+
+
+
+
 
   //}
   //handling email input box
@@ -65,6 +70,28 @@ class companysignup extends React.Component {
       email: e.target.value
     });
   };
+
+  handlephonenumber = e => {
+    e.preventDefault();
+    this.setState({
+      phonenumber: e.target.value
+    });
+  };
+
+  handlesite= e => {
+    e.preventDefault();
+    this.setState({
+      companysitelink: e.target.value
+    });
+  };
+
+
+
+
+
+
+
+  /*
   //check email verify
   checkEmail = e => {
     e.preventDefault();
@@ -115,7 +142,14 @@ class companysignup extends React.Component {
     //         alert("This id is already existed");
     //       }
     //     });
-    // }
+    // }*/
+
+
+
+
+
+
+
  
   //handling email input box
   handleNickname = e => {
@@ -124,6 +158,11 @@ class companysignup extends React.Component {
       nickname: e.target.value
     });
   };
+
+
+
+
+  /*
   //verify email
   checkNickname = e => {
     e.preventDefault();
@@ -159,25 +198,33 @@ class companysignup extends React.Component {
           }
         });
     }
-  };
-  //첫번째 패스워드 입력창 set변환
+  };*/
+
+
+
+  //
   handlePW = e => {
     e.preventDefault();
     this.setState({
       pw: e.target.value
     });
   };
-  //두번째 패스워드 입력창 set변환
+  //
   handleRE_PW = e => {
     e.preventDefault();
     this.setState({
       re_pw: e.target.value
     });
   };
-  //첫번 째 두번 째 패스워드 일치 확인
+  //
+
+
+
+
+  /*
   checkPW = e => {
     e.preventDefault();
-    //비밀번호 유효성검사(영문,숫자 혼합 6~20)
+    //
     const chkPwd = function(str) {
       var reg_pwd = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z]).*$/;
       return !reg_pwd.test(str) ? false : true;
@@ -198,20 +245,39 @@ class companysignup extends React.Component {
         alert("Unmatched.");
       }
     }
-  };
-  //서버로 가입 양식 제출
+  };*/
+
+
+  //
   handleSubmit = e => {
     e.preventDefault();
-    const {
-      email,
-      emailCheck,
-      nickname,
-      nicknameCheck,
-      pwCheck,
-      pw,
-      re_pw
-    } = this.state;
-    const signupInfo = {
+    const info= {
+      id: this.state.id,
+      companyname: this.state.id,
+      companysitelink: this.state.companysitelink,
+      email: this.state.email,
+      //emailCheck,
+      //nickname,
+      //nicknameCheck,
+      //pwCheck,
+      pw: this.state.pw,
+      re_pw: this.state.re_pw,
+      phonenumber: this.state.phonenumber,
+      accountType:this.state.accountType
+    };
+    myFirebase.collection("users").add({
+      ...info
+    }).then(()=>{
+      alert("signed up!");
+    }).catch((err)=>{
+      alert("error");
+    })
+  };
+
+
+
+
+    /*const signupInfo = {
       email: this.state.emailCheck,
       pw: this.state.pwCheck,
       nickname: this.state.nicknameCheck
@@ -240,7 +306,7 @@ class companysignup extends React.Component {
       alert("입력값을 확인해주세요");
     }
 
-  };
+  };*/
   render() {
     return (
       <form class="signUp">
@@ -262,6 +328,19 @@ class companysignup extends React.Component {
             value={this.state.email}/>
             <input type="button" onClick={this.checkEmail} value="verify"/>
           </p>
+          <p>
+          Manager Phone number: <input
+            type="text"
+            onChange={this.handlephonenumber} 
+            value={this.state.phonenumber}/>
+          </p>
+          <p>
+          Company Site link: <input
+            type="text"
+            onChange={this.handlesite} 
+            value={this.state.companysitelink}
+            />
+          </p>    
           <p>
           Nickname: <input
             type = "text"
