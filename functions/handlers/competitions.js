@@ -1,13 +1,13 @@
 const { db } = require('../util/admin');
 
 exports.getAllCompetitions = (req, res) => {
-    db.collection('competions')
+    db.collection('competitions')
     .orderBy('createdAt', 'desc')
     .get()
         .then(data => {
             let competions = [];
             data.forEach(doc => {
-                competions.push({
+                competitions.push({
                     
                     title: doc.data().title,
                     body: doc.data().body,
@@ -21,7 +21,7 @@ exports.getAllCompetitions = (req, res) => {
 
                 });
             });
-            return res.json(competions);
+            return res.json(competitions);
 
         })
         .catch((err) => {

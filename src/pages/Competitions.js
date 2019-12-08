@@ -46,4 +46,4 @@ class DisplayCompetitions extends Component {
         )
     }
 }
-export default Competitions;
+export default connect(mapStateToProps)(Competitions);
