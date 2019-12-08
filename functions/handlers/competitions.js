@@ -1,124 +1,53 @@
-const { db } = require('../util/admin');
+import React, {Component, Fragment} from "react";
+import {Link} from 'react-router-dom'
+import NavigationBar from './Main.js'
+import axios from 'axios'
+import Competition from './components/competition'
 
-exports.getAllCompetitions = (req, res) => {
-    db.collection('competitions')
-    .orderBy('createdAt', 'desc')
-    .get()
-        .then(data => {
-            let competitions = [];
-            data.forEach(doc => {
-                competitions.push({
-                    
-                    title: doc.data().title,
-                    body: doc.data().body,
-                    category: doc.data().category,
-                    author: doc.data().author,
-                    dueDate: doc.data().dueDate,
-                    userName: doc.data().userName,
-                    likesCount: doc.data().likesCount,
-                    commentsCount: doc.data().commentsCount,
-                    competitionId: doc.id,
-
-                });
-            });
-            return res.json(competitions);
-
-        })
-        .catch((err) => {
-        
-            console.error(err)
-            res.status(500).json({error: err.code});
-        });
-
-}
-
-exports.postCompetition = (req, res) => {
-
-    const newCompetition = {
-
-        title: req.body.title,
-        body: req.body.body,
-        category: req.body.category,
-        author: req.body.author,
-        dueDate: req.body.dueDate,
-        userName: req.user.userName,
-        userImage: req.user.imageUrl,
-        createdAt: new Date().toISOString()
-    };
-    
-    db.collection('competitions')
-        .add(newCompetition)
-        .then((doc) => {
-            const resNewCompetition = newCompetition;
-            resNewCompetition.competionId = doc.id;
-            res.json(resNewCompetition);
-     
-        })
-        .catch((err) => {
-            res.status(500).json({error: 'something went wrong'});
-            console.error(err);
-        });
-
-}
-
-
-exports.getCompetition = (req, res) => {
-    let competitionData = {};
-    db.doc(`/competitions/${req.params.competitionId}`).get()
-        .then(doc => {
-            if(!doc.exists){
-                return res.status(404).json({error: 'competition not found'});
-            }
-            competitionData = doc.data();
-            competitionData.competitionId = doc.id;
-            return db.collection('comments')
-                .where('competitionId', '==', req.params.competitionId)
-                .orderBy('createdAt', 'desc')
-                .get();
-        }).then(data => {
-            competitionData.comments = [];
-            data.forEach(doc => {
-                competitionData.comments.push(doc.data());
-
-            })
-            return res.json(competitionData);
-        })
-        .catch(err => {
-            console.error(err);
-            res.status(500).json({error: err.code});
-            
-
-           })
-
-}
-
-
-exports.postCommentOnCompetition = (req, res) => {
-
-    if(req.body.body.trim() === ''){
-        return res.status(400).json({error: "Must not be empty"});
+class Competitions extends Component{
+    render() {
+        return(
+            <Fragment>
+                <NavigationBar/>
+                <DisplayCompetitions/>
+            </Fragment>
+        )
     }
-    const newComment = {
-        userName: req.user.userName,
-        competitionId: req.params.competitionId,
-        body: req.body.body,
-        createdAt: new Date().toISOString(),
-        userImage: req.user.imageUrl
-    };
-    
-    db.doc(`/competitions/${req.params.competitionId}`).get()
-        .then(doc => {
-            if(!doc.exists){
-                console.log("----------visited----------")
-                return res.status(404).json({error: "competition not found"});
-            }
-            return db.collection('comments').add(newComment);
-
-        }).then(() => {
-            res.json(newComment);
-        }).catch(err => {
-            console.log(err);
-            res.status(500).json({error: 'Something went wrong'});
-        }); 
 }
-
+class DisplayCompetitions extends Component {
+    state = {
+        competitions: null
+    }
+    componentDidMount() {
+        axios.get('/competitions')
+        .then(competitions => {
+            console.log("in axios competition");
+            console.log(competitions.data);
+            this.setState({
+                competitions: competitions.data
+            })}
+        )
+        .catch(err => console.log(err));
+    }
+    render(){
+        const {competitions} = this.state;
+        return(
+            <div class="posts">
+                { competitions && Object.keys(competitions).map(competition => {
+                    return(
+                        <Competition title= {competition.title}
+                        body= {competition.body}
+                        category= {competition.category}
+                        author= {competition.author}
+                        dueDate= {competition.dueDate}
+                        userName= {competition.userName}
+                        userImage= {competition.imageUrl}
+                        createdAt= {competition.createdAt}/>
+                        )
+                    })
+                }
+            </div>
+        )
+    }
+}
+export default Competitions;

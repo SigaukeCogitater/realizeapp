@@ -125,8 +125,7 @@ class companysignup extends React.Component {
   render() {
     return (
       <form class="signUp">
-        <h1>Company Signup</h1>
-        
+        <h1 id = "font_set">Company Signup</h1>
         <br/>
         <div>
           <p>

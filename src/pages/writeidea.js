@@ -50,21 +50,23 @@ class writeidea extends React.Component{
           <NavigationBar/>
             <div id="wr">
                 <h1> Write Idea</h1>
-                    title : <input
-                                id = "title"
-                                type= "text"
-                                onChange={this.handletitle}
-                                value = {this.state.title}/>
+                    title 
+                    <br></br>
+                    <input
+                      id = "title"
+                      type= "text"
+                      onChange={this.handletitle}
+                      value = {this.state.title}/>
                     <br></br>
                     <p></p>
-                    Description:
+                    Description
                     <br></br>
                       <textarea cols="150" rows="30"
                           id="des"
                           onChange = {this.handleDescription}
                           value = {this.state.description}/>
                     <div>
-                        <button onClick={this.handleSubmit}>Submit</button>
+                        <button id="bt" onClick={this.handleSubmit}>Submit</button>
                     </div>
                 
             </div>
