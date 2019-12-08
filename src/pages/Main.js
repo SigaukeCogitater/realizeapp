@@ -20,7 +20,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ideas: state.idea.ideas,
+        ideas: state.ideas,
         competitions: state.competition.competitions
     }
 }
@@ -56,12 +56,21 @@ class DisplayIdeas extends Component {
         const {ideas} = this.state;
         return(
             <div class="posts">
-                { ideas && Object.keys(ideas).map(idea => {
-                    return(
-                        <Idea id={idea.ideaId} content= {idea} />
+                { ideas && ideas.map(idea => {
+                    console.log(idea.body);
+                    return (
+                        <Idea body={idea.body}
+                        category= {idea.category}
+                        commentsCount= {idea.commentsCount}
+                        createdAt= {idea.date}
+                        ideaTitle= {idea.ideaTitle}
+                        ideaId= {idea.ideaId}
+                        likesCount= {idea.likeCount}
+                        userName= {idea.userName} />
                         )
                     })
                 }
+            
             </div>
         )
     }

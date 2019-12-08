@@ -2,6 +2,7 @@ import React, {Component, Fragment} from "react";
 
 class Competition extends Component {
     state= {
+        id: this.props.id,
         title: "title",
         content: "description"
     }
