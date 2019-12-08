@@ -27,9 +27,9 @@ export class NavigationBar extends Component{
     render() {
         return(
             <div id="bar">
-                <Link to="./main"><div id="allIdeas">All Ideas</div></Link>
-                <Link to="./mypage"><div id="myPage">My Page</div></Link>
-                <Link to="./competitions"><div id="competitions">Competitions</div></Link>
+                <Link to="/main"><div id="allIdeas">All Ideas</div></Link>
+                <Link to="/mypage"><div id="myPage">My Page</div></Link>
+                <Link to="/competitions"><div id="competitions">Competitions</div></Link>
             </div>
         )
     }

@@ -10,7 +10,7 @@ class MyPage extends Component{
         return(
             <Fragment>
                 <NavigationBar/>
-                <Link to="./mypage/writeidea"><div id="writeidea" class="button">Add Idea</div></Link>
+                <Link to="./mypage/writeidea"><div id="writeidea">+</div></Link>
             </Fragment>
         )
     }
