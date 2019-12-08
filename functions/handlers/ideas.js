@@ -8,7 +8,6 @@ exports.getAllIdeas = (req, res) => {
             let ideas = [];
             data.forEach(doc => {
                 ideas.push({
-                    
                     ideaId: doc.id,                    
                     body: doc.data().body,
                     description: doc.data().description,
