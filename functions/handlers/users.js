@@ -5,7 +5,7 @@ const config = require('../util/config');
 const firebase = require('firebase');
 firebase.initializeApp(config);
 
-const {validateSignupData, validateLoginData, reduceUserInfo} = require('../util/validators');
+const {validateSignupData, validatePersonalSignupData, validateLoginData, reduceUserInfo} = require('../util/validators');
 
 exports.companySignup = (req, res) => {
     const newUser = {
@@ -83,9 +83,9 @@ exports.companySignup = (req, res) => {
         accountType: req.body.accountType
     };
 
-    const {valid, errors } = validateSignupData(newUser);
+    const {valid, errors } = validatePersonalSignupData(newUser);
 
-    if(!valid) return res.status(400).json({errors});
+    if(!valid) return res.status(400).json(errors);
 
     const noImg = 'no-img.png';
 

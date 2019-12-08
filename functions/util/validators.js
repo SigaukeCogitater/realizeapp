@@ -11,6 +11,50 @@ const isEmpty = (string) => {
     }else{ return false;}
   }
 
+
+exports.validatePersonalSignupData = (userData) => {
+
+  let errors = {};
+  //email validation
+  
+      if(isEmpty(userData.email)){
+        errors.email = "Email must not be empty";
+      }else if(!isEmail(userData.email)){
+        errors.email = "must be a valid email address";
+      }
+      /*userData.forEach(key){
+  
+      };*/
+      // consider using foreach
+      if(isEmpty(userData.password)){
+        errors.password = "must not be empty"
+      }
+      if(isEmpty(userData.userName)){
+        errors.userName = "must not be empty"
+      }
+      
+      if(isEmpty(userData.confirmPassword)){
+        errors.confirmPassword = "must not be empty"
+      }
+      
+      if(userData.password !== userData.confirmPassword) {
+        errors.confirmPassword = "password must match";
+      }
+      if(isEmpty(userData.firstName)){
+              errors.firstName = "must not be empty"
+      }
+      if(isEmpty(userData.lastName)){
+              errors.lastName = "must not be empty"
+      }
+
+  
+      return {
+          errors,
+          valid: Object.keys(errors).length === 0 ? true : false
+      }
+
+}
+
 exports.validateSignupData = (userData) => {
     let errors = {};
 //email validation
@@ -51,7 +95,10 @@ exports.validateSignupData = (userData) => {
         
         if(isEmpty(userData.phoneNumber)){
             errors.phoneNumber = "must not be empty"
-          }                                                                                                                                                                                                                                         
+          }
+          if(isEmpty(userData.companyName)){
+            errors.companyName = "must not be empty"
+          }                                                                                                                                                                                                                                          
           if(isEmpty(userData.companySite)){
             errors.companySite = "must not be empty"
           }

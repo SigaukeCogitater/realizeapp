@@ -8,6 +8,7 @@ const {
     getIdea,
     likeIdea,
     unlikeIdea,
+    getAllUserIdeas,
     deleteIdea
 } = require('./handlers/ideas');
 const { 
@@ -44,6 +45,7 @@ const ALGOLIA_INDEX_USERS = "users";
 // Idea routes
 
 app.get('/ideas', getAllIdeas);
+
 app.post('/idea', FBAuth, postIdea);
 app.get('/idea/:ideaId', getIdea);
 app.delete('/idea/:ideaId', FBAuth, deleteIdea);
@@ -67,6 +69,7 @@ app.post('/login', login);
 app.post('/user/image', FBAuth, uploadImage);
 app.post('/update', FBAuth, updateUserInfo);
 app.get('/user', FBAuth, getAuthenticatedUserDetails);
+app.get('/user/:userName/ideas', getAllUserIdeas);
 app.get('/user/:userName', getUserDetails);
 app.post('/notifications', FBAuth, markNotificationRead);
 

@@ -1,5 +1,39 @@
 const { db } = require('../util/admin');
 
+// exports.getAllCompetitions = (req, res) => {
+//     db.collection('competitions')
+//     .orderBy('createdAt', 'desc')
+//     .get()
+//         .then(data => {
+//             let competions = [];
+//             data.forEach(doc => {
+//                 competions.push({
+                    
+//                     title: doc.data().title,
+//                     body: doc.data().body,
+//                     category: doc.data().category,
+//                     author: doc.data().author,
+//                     createdAt: doc.data().createdAt,
+//                     dueDate: doc.data().dueDate,
+//                     userName: doc.data().userName,
+//                     likesCount: doc.data().likesCount,
+//                     commentsCount: doc.data().commentsCount,
+//                     competionId: doc.id,
+
+//                 });
+//                 console.log(competion);
+//             });
+//             return res.json(competions);
+
+//         })
+//         .catch((err) => {
+        
+//             console.error(err)
+//             res.status(500).json({error: err.code});
+//         });
+
+// }
+
 exports.getAllCompetitions = (req, res) => {
     db.collection('competitions')
     .orderBy('createdAt', 'desc')
@@ -30,6 +64,7 @@ exports.getAllCompetitions = (req, res) => {
         });
 
 }
+
 
 exports.postCompetition = (req, res) => {
 
