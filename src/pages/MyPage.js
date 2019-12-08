@@ -4,7 +4,7 @@ import NavigationBar from './Main.js'
 
 class MyPage extends Component{
     state ={
-
+        
     }
     render() {
         return(

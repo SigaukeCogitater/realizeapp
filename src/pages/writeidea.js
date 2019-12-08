@@ -1,7 +1,10 @@
 import React from "react";
 import myFirebase from '../config';
 
+
 class writeidea extends React.Component{
+
+
     state = {
         title:"",
         description:"",
@@ -37,6 +40,9 @@ class writeidea extends React.Component{
       })
     };
 
+
+  
+
     render(){
         return(
             <div>
@@ -49,12 +55,11 @@ class writeidea extends React.Component{
                     <br></br>
                     <p></p>
                     Description:
-                    <br></br> 
-                    <input
-                        id ="des"
-                        type = "text"
-                        onChange = {this.handleDescription}
-                        value = {this.state.description}/>
+                    <br></br>
+                      <textarea cols="150" rows="30"
+                          id="des"
+                          onChange = {this.handleDescription}
+                          value = {this.state.description}/>
                     <div>
                         <button onClick={this.handleSubmit}>Submit</button>
                     </div>
