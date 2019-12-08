@@ -34,8 +34,7 @@ class MyPage extends Component{
         return(
             <Fragment>
                 <NavigationBar/>
-                
-                { userType == 0 ? 
+                { userType == 1 ? 
                     <Link to="./mypage/writeidea"><div id="writeidea">+</div></Link> 
                     : <Link to="./mypage/writecompa"><div id="writecompa">+</div></Link> }
             </Fragment>

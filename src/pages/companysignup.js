@@ -11,7 +11,7 @@ class companysignup extends React.Component {
   //constructor(props){
     //super(props);
     state = {
-      accountType: 1,
+      accountType: 0,
       userName: "",
       companyName:"",
       companySite:"",

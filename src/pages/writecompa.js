@@ -49,7 +49,7 @@ class writecompa extends React.Component{
         <Fragment>
           <NavigationBar/>
             <div id="wr">
-                <h1> Write Idea</h1>
+                <h1> Write Competition</h1>
                     <b>title</b> 
                     <br></br>
                     <input

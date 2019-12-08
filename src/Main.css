@@ -95,7 +95,17 @@ a{
     font-size: calc(15px + 2vmin);
     line-height: 90px; 
 }
-
+#writecompa{
+    width: 100px;
+    height: 100px;
+    background: rgb(255, 0, 170);
+    border-radius: 50%;
+    position: fixed;
+    margin: 100px 350px;
+    text-align: center;
+    font-size: calc(15px + 2vmin);
+    line-height: 90px; 
+}
 #bt{
     background-color: rgb(255, 0, 170);
     border: none;

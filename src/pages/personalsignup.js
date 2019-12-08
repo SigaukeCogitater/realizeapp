@@ -15,7 +15,7 @@ class personalsignup extends React.Component {
         birthday:"",
         pw: "",
         re_pw: "",
-        accountType: 0
+        accountType: 1
       };
       handlefirstname = e => {
         e.preventDefault();
