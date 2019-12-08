@@ -32,6 +32,46 @@ exports.getAllIdeas = (req, res) => {
 
 }
 
+
+
+//userIdeas
+
+exports.getAllUserIdeas = (req, res) => {
+    db.collection('ideas')
+    .orderBy('createdAt', 'desc')
+    .where('userName','==',req.params.userName)
+    .get()
+        .then(data => {
+            let ideas = [];
+            data.forEach(doc => {
+                ideas.push({
+                    
+                    ideaId: doc.id,                    
+                    body: doc.data().body,
+                    description: doc.data().description,
+                    category: doc.data().category,
+                    createdAt: doc.data().createdAt,
+                    likesCount: doc.data().likesCount,
+                    commentsCount: doc.data().commentsCount,
+                    userImage: doc.data().userImage,
+                    userName: doc.data().userName
+
+                });
+            });
+            return res.json(ideas);
+
+        })
+        .catch((err) => {
+        
+            console.error(err)
+            res.status(500).json({error: err.code});
+        });
+}
+
+
+
+
+
 exports.postIdea = (req, res) => {
 
     const newIdea = {
