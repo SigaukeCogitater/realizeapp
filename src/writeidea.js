@@ -1,9 +1,11 @@
 import React from "react";
 import './writeidea.css';
-import WriteIdea from './writeidea.js'
+//import WriteIdea from './writeidea.js'
 import myFirebase from './config';
 
 class writeidea extends React.Component{
+
+
     state = {
         title:"",
         description:"",
@@ -38,6 +40,9 @@ class writeidea extends React.Component{
         alert("error");
       })
     };
+
+
+  
 
     render(){
         return(
