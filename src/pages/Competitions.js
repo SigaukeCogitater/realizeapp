@@ -4,7 +4,7 @@ import {NavigationBar} from './Main.js'
 import axios from 'axios'
 import Competition from './components/competition'
 import {connect} from 'react-redux'
-import {mapStateToProps} from 'react-redux-firebase'
+//import {mapStateToProps} from 'react-redux-firebase'
 class Competitions extends Component{
     render() {
         return(
@@ -14,6 +14,11 @@ class Competitions extends Component{
             </Fragment>
         )
     }
+}
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    };
 }
 
 class DisplayCompetitions extends Component {
