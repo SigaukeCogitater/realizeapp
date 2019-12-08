@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import myFirebase from '../config';
-
+import {NavigationBar} from './Main';
 
 class writeidea extends React.Component{
 
@@ -45,26 +45,31 @@ class writeidea extends React.Component{
 
     render(){
         return(
-            <div>
-                <h1> Write Idea</h1>
-                    title : <input
+          <Fragment>
+          <NavigationBar/>
+            <div id = "wr">
+                <h1> WRITE IDEA</h1>
+                    title
+                    <br></br> 
+                     <input
                                 id = "title"
                                 type= "text"
                                 onChange={this.handletitle}
                                 value = {this.state.title}/>
                     <br></br>
                     <p></p>
-                    Description:
+                    Description
                     <br></br>
                       <textarea cols="150" rows="30"
                           id="des"
                           onChange = {this.handleDescription}
                           value = {this.state.description}/>
                     <div>
-                        <button onClick={this.handleSubmit}>Submit</button>
+                        <button id="bt" onClick={this.handleSubmit}>Submit</button>
                     </div>
                 
             </div>
+            </Fragment>
         );
     }
 

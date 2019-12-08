@@ -108,7 +108,7 @@ class personalsignup extends React.Component {
       render(){
           return(
               <form class="signUp">
-                  <h1>Personal Sign up</h1>
+                  <h1 id = "font_set">Personal Sign up</h1>
                   <br/>
                   <div>
                     <p>
@@ -161,6 +161,8 @@ class personalsignup extends React.Component {
                         type = "password"
                         onChange={this.handlePW}
                         value={this.state.pw}/>
+                    </p>
+                    <p>
                     Repassword: <input
                         type = "password"
                         onChange={this.handleRE_PW}

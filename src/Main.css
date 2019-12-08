@@ -11,6 +11,7 @@ form {
     justify-content: center;
     font-size: calc(10px + 2vmin);
     color: white;
+    font-family: Courier;
 }
 a{
     text-decoration: none;
@@ -37,7 +38,7 @@ a{
     text-align: center;
     margin: 0;
     padding: 0;
-    width: 25%;
+    width: 16%;
     height: 100%; 
     position: fixed;
     overflow: auto;
@@ -57,7 +58,6 @@ a{
     background: steelblue
 }
 
-
 /* Posts align */
 .post{
     display: block;
@@ -76,7 +76,7 @@ a{
     padding: 2px 16px
 }
 .posts{
-    margin-left: 25%;
+    margin-left: 16%;
     padding: 5%;
     flex: 1;
     display: flex;
@@ -86,31 +86,64 @@ a{
 }
 /* My Page */
 #writeidea {
-    
+    background-color: blanchedalmond;
+    color: black;
+    font-family:Courier;
 }
+
+#bt{
+    background-color: rgb(255, 0, 170);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    font-family:Courier;
+}
+
+#wr{
+    margin-left: 16%;
+    padding: 5%;
+    background:white;
+    font-family:Courier;
+}
+
+#font_set{
+    font-family:Courier;
+}
+
+
+
 /* Sign Up Page */
 .signUp p{
     text-align: left;
+    font-family:Courier;
 }
 
 input {
-    font-size: calc(10px + 2vmin);
+    font-size: calc(10px + 1vmin);
     padding: 10px;
 }
 
 /* Sign In Page - box align */
 #SignIn input{
-    margin-bottom: 15px
+    margin-bottom: 15px;
+    font-size: calc(10px + 2vmin);
 }
 
 /* Write Page */
 #des {
-    background: white;
+    background: rgb(226, 180, 226);
+    width: 75%;
+    font-family: Courier;
     
 }
 
 #title{
-    background: white;
-    width: 1024px;
+    background: rgb(226, 180, 226);
+    width: 74%;
     height: 10px;
+    font-family: Courier;
 }

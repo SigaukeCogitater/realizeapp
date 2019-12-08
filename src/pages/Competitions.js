@@ -3,7 +3,8 @@ import {Link} from 'react-router-dom'
 import NavigationBar from './Main.js'
 import axios from 'axios'
 import Competition from './components/competition'
-
+import {connect} from 'react-redux'
+import {mapStateToProps} from 'react-redux-firebase'
 class Competitions extends Component{
     state ={
         competitions: {}
