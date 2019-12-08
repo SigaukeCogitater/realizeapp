@@ -24,7 +24,7 @@ class DisplayCompetitions extends Component {
     componentDidMount() {
         axios.get('/competitions')
         .then(competitions => {
-            console.log("in axios home");
+            console.log("in axios competition");
             console.log(competitions.data);
             this.setState({
                 competitions: competitions.data
