@@ -1,6 +1,6 @@
 const initState = {
     accountType: -1,
-    userID: "",
+    email: "",
     userName: ""
 }
 

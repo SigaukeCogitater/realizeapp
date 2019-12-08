@@ -1,8 +1,5 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import PersonalSignup from './personalsignup.js'
-import Switch from '@material-ui/core/Switch';
-import myFirebase from "../config";
 import axios from 'axios'
 
 class personalsignup extends React.Component {

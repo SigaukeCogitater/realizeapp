@@ -22,6 +22,11 @@ const mapStateToProps = (state) => {
         auth: state.account
     };
 }
+// const mapStateToProps = (dispatch) =>{
+//     return{
+//         authenticate: (account) => dispatch(authenticate(account))
+//     }
+// }
 
 export class NavigationBar extends Component{
     render() {
