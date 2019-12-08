@@ -10,7 +10,7 @@ exports.getAllCompetitions = (req, res) => {
                 competions.push({
                     
                     title: doc.data().title,
-                    description: doc.data().description,
+                    body: doc.data().body,
                     category: doc.data().category,
                     author: doc.data().author,
                     dueDate: doc.data().dueDate,
@@ -37,7 +37,7 @@ exports.postCompetition = (req, res) => {
     const newCompetition = {
 
         title: req.body.title,
-        description: req.body.description,
+        body: req.body.body,
         category: req.body.category,
         author: req.body.author,
         dueDate: req.body.dueDate,
