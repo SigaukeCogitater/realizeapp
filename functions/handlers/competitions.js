@@ -42,7 +42,7 @@ exports.postCompetition = (req, res) => {
         dueDate: req.body.dueDate,
         userName: req.user.userName,
         userImage: req.user.imageUrl,
-        createdAt: new Date().toISOString(),
+        createdAt: new Date().toISOString()
     };
     
     db.collection('competitions')

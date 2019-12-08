@@ -17,10 +17,10 @@ class Main extends Component {
     }
 }
 
-const mapStateToProps = (dispatch) => {
+const mapStateToProps = (state) => {
     return {
-        // createIdea: (idea) => dispatchEvent(createIdea(idea))
-    }
+        auth: state.auth
+    };
 }
 
 export class NavigationBar extends Component{
