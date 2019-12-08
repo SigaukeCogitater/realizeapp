@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PersonalSignup from './personalsignup.js'
 import Switch from '@material-ui/core/Switch';
 import myFirebase from "../config";
+import axios from 'axios'
+
 class personalsignup extends React.Component {
     //constructor(props){
       //super(props);
@@ -16,7 +18,7 @@ class personalsignup extends React.Component {
         birthday:"",
         pw: "",
         re_pw: "",
-        accountType: 1
+        accountType: 0
       };
       handlefirstname = e => {
         e.preventDefault();
@@ -81,34 +83,53 @@ class personalsignup extends React.Component {
         });
       };
 
-      handleSubmit = e =>{
+      handleSubmit = (e) =>{
+        console.log("submitted");
         e.preventDefault();
-        const info ={
-          id: this.state.id,
-          phonenumber: this.state.phonenumber,
-          email: this.state.email,
-          nickname: this.state.nickname,
-          firstname: this.state.firstname,
-          lastname: this.state.lastname,
-          birthday: this.state.birthday,
-          pw:this.state.pw,
-          re_pw: this.state.re_pw,
-          accountType: this.state.accountType
+        this.setState({
+            loading: true
+        });
+        let axiosConfig = {
+            headers: {
+                'Content-Type': 'application/json;charset=UTF-8',
+                "Access-Control-Allow-Origin": "*",
+            }
+          };
+        
+          const userData ={
+            "accountType": this.state.accountType,
+            "email": this.state.email,
+            "userName": this.state.id,
+            "lastName": this.state.lastname,
+            "firstName": this.state.firstname,
+            "password": this.state.ps,
+            "confirmPassword": this.state.re_pw
         };
-        myFirebase.collection("users").add({
-          ...info
-        }).then(()=>{
-          alert("signed up!");
-        }).catch((err)=>{
-          alert("error");
-        })
+          axios.post('/signup/personal', userData, axiosConfig)
+            .then(res => {
+                localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
+                this.state.loading = false;
+                // this.setState({token : res.data.token,
+                // loading: false});
+
+                this.props.history.push('/');
+                console.log(this.state);
+            })
+            .catch((err) => {
+                this.state.errors = err.response.data;
+              
+                this.state.loading = false;
+                console.log(this.state);
+
+              
+            });
     };
 
 
       render(){
           return(
               <form class="signUp">
-                  <h1>Personal Sign up</h1>
+                  <h1 id = "font_set">Personal Sign up</h1>
                   <br/>
                   <div>
                     <p>
@@ -150,7 +171,7 @@ class personalsignup extends React.Component {
                         <input type="button" onClick={this.checkEmail} value="verify"/>
                     </p>
                     <p>
-                    Nickname: <input
+                    UserName: <input
                         type = "text"
                         onChange={this.handleNickname}
                         value={this.state.nickname}/>
@@ -161,11 +182,12 @@ class personalsignup extends React.Component {
                         type = "password"
                         onChange={this.handlePW}
                         value={this.state.pw}/>
-                    Repassword: <input
-                        type = "password"
-                        onChange={this.handleRE_PW}
-                        value={this.state.re_pw}/>
-                        <input type="button" onClick={this.checkPW} value="check password"/>
+                    </p>
+                    <p>Repassword: <input
+                    type = "password"
+                    onChange={this.handleRE_PW}
+                    value={this.state.re_pw}/>
+                    <input type="button" onClick={this.checkPW} value="check password"/>
                     </p>
                     <div>
                         <button onClick={this.handleSubmit}>Submit</button>

@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Fragment } from "react";
 import myFirebase from '../config';
+import {NavigationBar} from './Main.js'
 
 
 class writeidea extends React.Component{
@@ -45,6 +46,8 @@ class writeidea extends React.Component{
 
     render(){
         return(
+        <Fragment>
+          <NavigationBar/>
             <div>
                 <h1> Write Idea</h1>
                     title : <input
@@ -65,6 +68,7 @@ class writeidea extends React.Component{
                     </div>
                 
             </div>
+          </Fragment>
         );
     }
 

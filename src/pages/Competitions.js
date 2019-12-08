@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
-import NavigationBar from './Main.js'
+import {NavigationBar} from './Main.js'
 import axios from 'axios'
 import Competition from './components/competition'
 

@@ -6,7 +6,7 @@ import myFirebase from "../config";
 // import Password from "./Password";
 import axios from 'axios'
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
+import $ from 'jquery';
 class companysignup extends React.Component {
   //constructor(props){
     //super(props);
