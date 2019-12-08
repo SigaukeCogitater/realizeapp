@@ -1,6 +1,8 @@
 import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
 import {NavigationBar} from './Main.js'
+import {connect} from 'react-redux'
+import {mapStateToProps} from 'react-redux-firebase'
 
 class MyPage extends Component{
     state ={
@@ -15,4 +17,4 @@ class MyPage extends Component{
         )
     }
 }
-export default MyPage;
+export default connect(mapStateToProps)(MyPage);

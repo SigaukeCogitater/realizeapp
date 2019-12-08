@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
-import Idea from './components/idea'
+import Idea from './components/Idea'
 import axios from 'axios'
 // import { createIdea } from '../store/actions/ideaActions'
 
@@ -19,7 +19,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.auth
+        auth: state.account
     };
 }
 
