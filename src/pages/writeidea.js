@@ -48,13 +48,15 @@ class writeidea extends React.Component{
         return(
         <Fragment>
           <NavigationBar/>
-            <div>
+            <div id="wr">
                 <h1> Write Idea</h1>
-                    title : <input
-                                id = "title"
-                                type= "text"
-                                onChange={this.handletitle}
-                                value = {this.state.title}/>
+                    title 
+                    <br></br>
+                    <input
+                      id = "title"
+                      type= "text"
+                      onChange={this.handletitle}
+                      value = {this.state.title}/>
                     <br></br>
                     <p></p>
                     Description
