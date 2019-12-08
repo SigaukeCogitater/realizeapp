@@ -50,7 +50,7 @@ class writeidea extends React.Component{
           <NavigationBar/>
             <div id="wr">
                 <h1> Write Idea</h1>
-                    title 
+                    <b>title</b> 
                     <br></br>
                     <input
                       id = "title"
@@ -59,7 +59,7 @@ class writeidea extends React.Component{
                       value = {this.state.title}/>
                     <br></br>
                     <p></p>
-                    Description
+                    <b>Description</b>
                     <br></br>
                       <textarea cols="150" rows="30"
                           id="des"
