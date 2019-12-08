@@ -38,12 +38,12 @@ a{
     text-align: center;
     margin: 0;
     padding: 0;
-    width: 16%;
+    width: 300px;
     height: 100%; 
     position: fixed;
     overflow: auto;
     background-color: #282c34;
-    font-size: calc(10px + 2vmin);
+    font-size: 30px;
     padding-top: 8%;
 }
 #bar div{
@@ -90,7 +90,7 @@ a{
     background: steelblue;
     border-radius: 50%;
     position: fixed;
-    margin: 5% 20%;
+    margin: 100px 350px;
     text-align: center;
     font-size: calc(15px + 2vmin);
     line-height: 90px; 
