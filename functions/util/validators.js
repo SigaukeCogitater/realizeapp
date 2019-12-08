@@ -55,6 +55,9 @@ exports.validateSignupData = (userData) => {
           if(isEmpty(userData.companySite)){
             errors.companySite = "must not be empty"
           }
+          if(isEmpty(userData.companyName)){
+            errors.companyName = "must not be empty"
+          }
     }
 
 

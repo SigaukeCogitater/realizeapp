@@ -32,14 +32,14 @@ class SignIn extends Component {
                     <input id= "ID" placeholder="ID" onChange={this.inputID}></input>
                     <br></br>
                     <input type="password" id="Password" placeholder="Password" onChange={this.inputPassword}></input>
-                    <div class="button" id = "font_set" onClick={this.empty/*check if there's corresponding data in database*/}>Log In</div>
+                    <div class="button" id="font_set" onClick={this.empty/*check if there's corresponding data in database*/}>Log In</div>
                     {console.log("Password change:" + this.state.Password)}
                     {console.log("ID change: " + this.state.ID)}
                 </div>
                 <div id="SignUp">
-                    <h1 id = "font_set">Sign Up</h1>
-                    <a href="/personalsignup"><div class="button" id = "font_set">Personal</div></a>
-                    <a href="/companysignup"><div class="button" id = "font_set">Company</div></a>
+                    <h1 id="font_set">Sign Up</h1>
+                    <a href="/personalsignup"><div id="font_set" class="button">Personal</div></a>
+                    <a href="/companysignup"><div id="font_set" class="button">Company</div></a>
                 </div>
             </form>
         )

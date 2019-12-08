@@ -86,9 +86,15 @@ a{
 }
 /* My Page */
 #writeidea {
-    background-color: blanchedalmond;
-    color: black;
-    font-family:Courier;
+    width: 100px;
+    height: 100px;
+    background: steelblue;
+    border-radius: 50%;
+    position: fixed;
+    margin: 5% 20%;
+    text-align: center;
+    font-size: calc(15px + 2vmin);
+    line-height: 90px; 
 }
 
 #bt{
