@@ -72,6 +72,19 @@ app.get('/user/:userName', getUserDetails);
 app.post('/notifications', FBAuth, markNotificationRead);
 
 
+
+//having core issues
+//trying to allow access cors
+
+// let allowCrossDomain = function(req, res, next) {
+//   res.header('Access-Control-Allow-Origin', "*");
+//   res.header('Access-Control-Allow-Headers', "*");
+//   next();
+// }
+// app.use(allowCrossDomain);
+
+//
+
 exports.api = functions.region('asia-northeast1').https.onRequest(app);
 
 exports.createNotificationOnLike = functions.region('asia-northeast1')
