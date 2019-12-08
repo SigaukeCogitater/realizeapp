@@ -5,9 +5,9 @@ exports.getAllCompetitions = (req, res) => {
     .orderBy('createdAt', 'desc')
     .get()
         .then(data => {
-            let competions = [];
+            let competitions = [];
             data.forEach(doc => {
-                competions.push({
+                competitions.push({
                     
                     title: doc.data().title,
                     body: doc.data().body,
@@ -17,11 +17,11 @@ exports.getAllCompetitions = (req, res) => {
                     userName: doc.data().userName,
                     likesCount: doc.data().likesCount,
                     commentsCount: doc.data().commentsCount,
-                    competionId: doc.id,
+                    competitionId: doc.id,
 
                 });
             });
-            return res.json(competions);
+            return res.json(competitions);
 
         })
         .catch((err) => {
