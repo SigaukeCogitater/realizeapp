@@ -5,11 +5,20 @@
   "dependencies": {
     "@material-ui/core": "^4.7.1",
     "algoliasearch": "^3.35.1",
+    "axios": "^0.19.0",
+    "firebase": "^7.5.2",
+    "firebase-admin": "^8.8.0",
+    "firebase-functions": "^3.3.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-native-hide-show-password-input": "^1.1.0",
+    "react-redux": "^7.1.3",
+    "react-redux-firebase": "^3.0.5",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.2.0",
+    "redux": "^4.0.4",
+    "redux-firestore": "^0.11.0",
+    "redux-thunk": "^2.3.0",
     "svg-spritemap-webpack-plugin": "github:cascornelissen/svg-spritemap-webpack-plugin#master"
   },
   "scripts": {
@@ -32,5 +41,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "https://asia-northeast1-realizeapp-cd0a5.cloudfunctions.net/api"
 }

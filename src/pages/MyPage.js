@@ -4,12 +4,14 @@ import NavigationBar from './Main.js'
 
 class MyPage extends Component{
     state ={
-
+        
     }
     render() {
         return(
-            <NavigationBar/>
-        
+            <Fragment>
+                <NavigationBar/>
+                <Link to="./mypage/writeidea"><div id="writeidea" class="button">Add Idea</div></Link>
+            </Fragment>
         )
     }
 }

@@ -1,7 +1,10 @@
 import React from "react";
-import './writeidea.css';
-import WriteIdea from './writeidea.js'
+import myFirebase from '../config';
+
+
 class writeidea extends React.Component{
+
+
     state = {
         title:"",
         description:"",
@@ -22,6 +25,24 @@ class writeidea extends React.Component{
         });
       };
 
+    handleSubmit = e => {
+      const info = this.state;
+      myFirebase.collection("ideas").add({
+        ...info,
+        authorFirstName: "hi",
+        authorLastName: 'hey',
+        authorId: 1234,
+        createdAt: new Date()
+      }).then(() => {
+        alert("idea added!");
+      }).catch((err) =>{
+        alert("error");
+      })
+    };
+
+
+  
+
     render(){
         return(
             <div>
@@ -34,12 +55,11 @@ class writeidea extends React.Component{
                     <br></br>
                     <p></p>
                     Description:
-                    <br></br> 
-                    <input
-                        id ="des"
-                        type = "text"
-                        onChange = {this.handleDescription}
-                        value = {this.state.description}/>
+                    <br></br>
+                      <textarea cols="150" rows="30"
+                          id="des"
+                          onChange = {this.handleDescription}
+                          value = {this.state.description}/>
                     <div>
                         <button onClick={this.handleSubmit}>Submit</button>
                     </div>

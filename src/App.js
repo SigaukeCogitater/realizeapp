@@ -1,12 +1,14 @@
 import React, {Component} from "react";
 import {Route,BrowserRouter} from 'react-router-dom'
-import SignIn from './SignIn.js'
-import Main from './Main.js'
-import CompanySignUp from './companysignup.js'
-import PersonalSignUp from './personalsignup.js'
-import MyPage from './MyPage.js'
-import Competitions from './Competitions.js'
+import SignIn from './pages/SignIn.js'
+import Main from './pages/Main.js'
+import CompanySignUp from './pages/companysignup.js'
+import PersonalSignUp from './pages/personalsignup.js'
+import MyPage from './pages/MyPage.js'
+import Competitions from './pages/Competitions.js'
+import WriteIdea from './pages/writeidea.js'
 import './Main.css'
+
 //test
 class App extends Component {
   render () {
@@ -19,6 +21,7 @@ class App extends Component {
       <Route exact path='/personalsignup' component={PersonalSignUp}/>
       <Route exact path='/mypage' component={MyPage}/>
       <Route exact path='/competitions' component={Competitions}/>
+      <Route exact path='/mypage/writeidea' component={WriteIdea}/>
     </div>
     </BrowserRouter>
     )
