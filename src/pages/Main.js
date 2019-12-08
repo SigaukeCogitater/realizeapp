@@ -2,19 +2,17 @@ import React, {Component, Fragment} from "react";
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import Idea from './components/idea'
+import axios from 'axios'
 
 class Main extends Component {
     state ={
-        posts: {1: {title: "title", content: "content"},
-                2: {title: "title2", content: "content2"}}
     }
     render(){
-        const {posts} = this.state
         console.log(this.props);
         return(
             <Fragment>
                 <NavigationBar/>
-                <DisplayPosting posts={posts}/>
+                <DisplayIdeas/>
             </Fragment>
         )
     }
@@ -39,18 +37,28 @@ export class NavigationBar extends Component{
     }
 }
 
-export class DisplayPosting extends Component {
+class DisplayIdeas extends Component {
     state = {
-        posts: this.props.posts
+        ideas: null
+    }
+    componentDidMount() {
+        axios.get('/ideas')
+        .then(ideas => {
+            console.log("in axios home");
+            console.log(ideas.data);
+            this.setState({
+                ideas: ideas.data
+            })}
+        )
+        .catch(err => console.log(err));
     }
     render(){
-        const {posts} = this.state;
-        console.log(posts);
+        const {ideas} = this.state;
         return(
             <div class="posts">
-                { posts && Object.keys(posts).map(id => {
+                { ideas && Object.keys(ideas).map(idea => {
                     return(
-                        <Idea id={id}/>
+                        <Idea id={idea.ideaId} content= {idea} />
                         )
                     })
                 }
