@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import PersonalSignup from './personalsignup.js'
 import Switch from '@material-ui/core/Switch';
-import myFirebase from "./config";
+import myFirebase from "../config";
 class personalsignup extends React.Component {
     //constructor(props){
       //super(props);

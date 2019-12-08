@@ -4,12 +4,12 @@ import NavigationBar from './Main.js'
 
 class Competitions extends Component{
     state ={
-
+        competitions: {}
     }
     render() {
         return(
             <NavigationBar/>
-        
+            
         )
     }
 }

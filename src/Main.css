@@ -28,7 +28,6 @@ a{
     background-color: steelblue;
 }
 
-
 /* Navigation Bar */
 #bar{
     flex: 1;
@@ -59,11 +58,34 @@ a{
 
 
 /* Posts align */
-.posts{
-    margin-left: 25%;
-    padding: 50px
+.post{
+    display: block;
+    box-shadow: 0 1% 2% 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 350px;
+    height: 300px;
+    background-color: blanchedalmond;
+    margin: 30px;
+}
+.post:hover{
+    box-shadow: 0 2% 4% 0 rgba(0,0,0,0.2);
 }
 
+.content{
+    padding: 2px 16px
+}
+.posts{
+    margin-left: 25%;
+    padding: 7%;
+    flex: 1;
+    justify-content: center;
+    flex-flow: row wrap;
+    background-color: darksalmon;
+}
+/* My Page */
+#writeidea {
+    
+}
 /* Sign Up Page */
 .signUp p{
     text-align: left;
@@ -77,4 +99,17 @@ input {
 /* Sign In Page - box align */
 #SignIn input{
     margin-bottom: 15px
+}
+
+/* Write Page */
+#des {
+    background: white;
+    width: 1062px;
+    height: 300px;
+}
+
+#title{
+    background: white;
+    width: 1024px;
+    height: 10px;
 }

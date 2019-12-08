@@ -8,10 +8,10 @@ class MyPage extends Component{
     }
     render() {
         return(
-            <form>
-            <NavigationBar/>
-            <Link to="./writeidea"><div id="writeidea">Add Idea</div></Link>
-            </form>
+            <Fragment>
+                <NavigationBar/>
+                <Link to="./mypage/writeidea"><div id="writeidea" class="button">Add Idea</div></Link>
+            </Fragment>
         )
     }
 }
