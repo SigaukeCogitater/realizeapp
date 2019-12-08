@@ -5,6 +5,7 @@ exports.getAllIdeas = (req, res) => {
     .orderBy('createdAt', 'desc')
     .get()
         .then(data => {
+            console.log(data);
             let ideas = [];
             data.forEach(doc => {
                 ideas.push({

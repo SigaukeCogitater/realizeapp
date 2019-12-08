@@ -36,18 +36,37 @@ const { db } = require('../util/admin');
 
 exports.getAllCompetitions = (req, res) => {
     db.collection('competitions')
-    .orderBy('createdAt', 'desc')
-    .get()
+    .get() 
         .then(data => {
-            // data.forEach(doc => {
-            //     console.log("-------------");
-            //     // console.log(doc);
-            // })
+            let competitions = [];
+
+            data.forEach(doc => {
+                console.log("-------------");
+                console.log(doc.userName);
+                competitions.push({
+                    title: doc.data().title,
+                    body: doc.data().body,
+                    category: doc.data().category,
+                    author: doc.data().author,
+                    createdAt: doc.data().createdAt,
+                    dueDate: doc.data().dueDate,
+                    userName: doc.data().userName,
+                    likesCount: doc.data().likesCount,
+                    commentsCount: doc.data().commentsCount,
+                    competionId: doc.id,
+
+
+                })
+
+
+
+
+            })
             // console.log(data);
             // let comp = [];
-            console.log(data);
+            console.log(competitions);
             
-            return res.json(data);
+            return res.json(competitions);
 
         })
         .catch((err) => {
