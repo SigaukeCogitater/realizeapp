@@ -3,10 +3,9 @@ import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import Idea from './components/idea'
 import axios from 'axios'
+// import { createIdea } from '../store/actions/ideaActions'
 
 class Main extends Component {
-    state ={
-    }
     render(){
         console.log(this.props);
         return(
@@ -18,10 +17,9 @@ class Main extends Component {
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (dispatch) => {
     return {
-        ideas: state.ideas,
-        competitions: state.competition.competitions
+        // createIdea: (idea) => dispatchEvent(createIdea(idea))
     }
 }
 

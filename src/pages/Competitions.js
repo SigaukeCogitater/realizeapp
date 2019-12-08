@@ -5,9 +5,6 @@ import axios from 'axios'
 import Competition from './components/competition'
 
 class Competitions extends Component{
-    state ={
-        competitions: {}
-    }
     render() {
         return(
             <Fragment>
@@ -38,14 +35,14 @@ class DisplayCompetitions extends Component {
             <div class="posts">
                 { competitions && Object.keys(competitions).map(competition => {
                     return(
-                        <Competition body={competition.body}
+                        <Competition title= {competition.title}
+                        body= {competition.body}
                         category= {competition.category}
-                        commentsCount= {competition.commentsCount}
-                        createdAt= {competition.date}
-                        competitionTitle= {competition.competitionTitle}
-                        competitionId= {competition.competitionId}
-                        likesCount= {competition.likeCount}
-                        userName= {competition.userName}/>
+                        author= {competition.author}
+                        dueDate= {competition.dueDate}
+                        userName= {competition.userName}
+                        userImage= {competition.imageUrl}
+                        createdAt= {competition.createdAt}/>
                         )
                     })
                 }
