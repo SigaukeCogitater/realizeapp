@@ -15,6 +15,7 @@ class Competitions extends Component{
         )
     }
 }
+
 class DisplayCompetitions extends Component {
     state = {
         competitions: null
@@ -34,7 +35,7 @@ class DisplayCompetitions extends Component {
         const {competitions} = this.state;
         return(
             <div class="posts">
-                { competitions && Object.keys(competitions).map(competition => {
+                { competitions && competitions.map(competition => {
                     return(
                         <Competition title= {competition.title}
                         body= {competition.body}

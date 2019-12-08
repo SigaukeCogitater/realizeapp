@@ -7,6 +7,7 @@ import PersonalSignUp from './pages/personalsignup.js'
 import MyPage from './pages/MyPage.js'
 import Competitions from './pages/Competitions.js'
 import WriteIdea from './pages/writeidea.js'
+import WriteCompa from './pages/writecompa.js'
 import './Main.css'
 
 //test
@@ -22,6 +23,7 @@ class App extends Component {
       <Route exact path='/mypage' component={MyPage}/>
       <Route exact path='/competitions' component={Competitions}/>
       <Route exact path='/mypage/writeidea' component={WriteIdea}/>
+      <Route exact path='/mypage/writecompa' component={WriteCompa}/>
     </div>
     </BrowserRouter>
     )

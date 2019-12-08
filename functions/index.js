@@ -54,9 +54,8 @@ app.get('/idea/:ideaId/unlike', FBAuth, unlikeIdea);
 // app.post('/comment', FBAuth, commentOnIdea);
 // Competion routesx    
 
-
-app.post('/competition', FBAuth, postCompetition);
 app.get('/competitions', getAllCompetitions);
+app.post('/competition', FBAuth, postCompetition);
 app.get('/competition/:competitionId', getCompetition);
 app.post('/competition/:competitionId/comment', FBAuth, postCommentOnCompetition);
 
