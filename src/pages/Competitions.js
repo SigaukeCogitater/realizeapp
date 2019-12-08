@@ -38,7 +38,14 @@ class DisplayCompetitions extends Component {
             <div class="posts">
                 { competitions && Object.keys(competitions).map(competition => {
                     return(
-                        <Competition id={competition.ideaId} content= {competition} />
+                        <Competition body={competition.body}
+                        category= {competition.category}
+                        commentsCount= {competition.commentsCount}
+                        createdAt= {competition.date}
+                        competitionTitle= {competition.competitionTitle}
+                        competitionId= {competition.competitionId}
+                        likesCount= {competition.likeCount}
+                        userName= {competition.userName}/>
                         )
                     })
                 }

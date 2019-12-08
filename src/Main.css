@@ -1,6 +1,5 @@
 /* Default */
 form {
-    flex: 1;
     flex-flow: row wrap;
     display: flex;
     text-align: center;
