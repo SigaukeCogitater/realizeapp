@@ -24,8 +24,11 @@ import { connect } from 'react-redux'
 import Idea from './components/idea'
 import axios from 'axios'
 
-class Main extends Component {
+class Mypage extends Component {
     state ={
+        id: axios.get('/users').then(users=>{this.setState({id: users.data.id})}),
+        //name,
+        //email,
     }
     render(){
         console.log(this.props);
@@ -42,6 +45,7 @@ class Main extends Component {
 const mapStateToProps = (state) => {
     return {
         ideas: state.idea.ideas,
+        competitions: state.competition.competitions
     }
 }
 
@@ -77,8 +81,16 @@ class DisplayIdeas extends Component {
         return(
             <div class="posts">
                 { ideas && Object.keys(ideas).map(idea => {
+                    console.log(idea.body);
                     return(
-                        <Idea id={idea.ideaId} content= {idea} />
+                        <Idea body={idea.body}
+                        category= {idea.category}
+                        commentsCount= {idea.commentsCount}
+                        createdAt= {idea.date}
+                        ideaTitle= {idea.ideaTitle}
+                        ideaId= {idea.ideaId}
+                        likesCount= {idea.likeCount}
+                        userName= {idea.userName} />
                         )
                     })
                 }
@@ -86,4 +98,4 @@ class DisplayIdeas extends Component {
         )
     }
 }
-export default connect(mapStateToProps)(Main);
+export default connect(mapStateToProps)(Mypage);
