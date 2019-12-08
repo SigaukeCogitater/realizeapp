@@ -182,7 +182,6 @@ class companysignup extends React.Component {
     
     };
     if (chkNickname(this.state.nickname) === false) {
-      //alert("한글,영문 대소문자 2~15자리만 사용 가능합니다");
       alert("korean, english upper and smaller 2~15 is accessable.");
     } else {
       const resp =fetch("http://localhost:3000/user/nick", nickname_info)
