@@ -2,15 +2,15 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 
-var config = {
-    apiKey: "AIzaSyAPF4T3omy-3cUlnAZ44dBAVgvcD23EFqs",
-    authDomain: "realizeapp-cd0a5.firebaseapp.com",
-    databaseURL: "https://realizeapp-cd0a5.firebaseio.com",
-    projectId: "realizeapp-cd0a5",
-    storageBucket: "realizeapp-cd0a5.appspot.com",
-    messagingSenderId: "869650222605",
-    appId: "1:869650222605:web:8d1e6f5a37fb0a516d0f44",
-    measurementId: "G-9CCRHFDRRB"
+const config = {
+    apiKey: "AIzaSyBz1thCsYEOVkXJjy_NWCOgmRbC1zwUYjk",
+    authDomain: "project316-7f8b2.firebaseapp.com",
+    databaseURL: "https://project316-7f8b2.firebaseio.com",
+    projectId: "project316-7f8b2",
+    storageBucket: "project316-7f8b2.appspot.com",
+    messagingSenderId: "86152672772",
+    appId: "1:86152672772:web:0bd61a3a9478cfd1bf6751",
+    measurementId: "G-0KEE6PRVPX"
 };
 firebase.initializeApp(config);
 const myFirebase = firebase.firestore()

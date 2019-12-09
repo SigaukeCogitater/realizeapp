@@ -1,59 +1,37 @@
 const { db } = require('../util/admin');
 
-// exports.getAllCompetitions = (req, res) => {
-//     db.collection('competitions')
-//     .orderBy('createdAt', 'desc')
-//     .get()
-//         .then(data => {
-//             let competions = [];
-//             data.forEach(doc => {
-//                 competions.push({
-                    
-//                     title: doc.data().title,
-//                     body: doc.data().body,
-//                     category: doc.data().category,
-//                     author: doc.data().author,
-//                     createdAt: doc.data().createdAt,
-//                     dueDate: doc.data().dueDate,
-//                     userName: doc.data().userName,
-//                     likesCount: doc.data().likesCount,
-//                     commentsCount: doc.data().commentsCount,
-//                     competionId: doc.id,
-
-//                 });
-//                 console.log(competion);
-//             });
-//             return res.json(competions);
-
-//         })
-//         .catch((err) => {
-        
-//             console.error(err)
-//             res.status(500).json({error: err.code});
-//         });
-
-// }
-
 exports.getAllCompetitions = (req, res) => {
     db.collection('competitions')
-    .orderBy('createdAt', 'desc')
-    .get()
+    .get() 
         .then(data => {
             let competitions = [];
+
             data.forEach(doc => {
+                console.log("-------------");
+                console.log(doc.userName);
                 competitions.push({
                     title: doc.data().title,
                     body: doc.data().body,
                     category: doc.data().category,
                     author: doc.data().author,
+                    createdAt: doc.data().createdAt,
                     dueDate: doc.data().dueDate,
                     userName: doc.data().userName,
                     likesCount: doc.data().likesCount,
                     commentsCount: doc.data().commentsCount,
-                    competitionId: doc.id,
+                    competionId: doc.id,
 
-                });
-            });
+
+                })
+
+
+
+
+            })
+            // console.log(data);
+            // let comp = [];
+            console.log(competitions);
+            
             return res.json(competitions);
 
         })
@@ -64,6 +42,7 @@ exports.getAllCompetitions = (req, res) => {
         });
 
 }
+
 
 
 exports.postCompetition = (req, res) => {
@@ -124,34 +103,4 @@ exports.getCompetition = (req, res) => {
 
            })
 
-}
-
-
-exports.postCommentOnCompetition = (req, res) => {
-
-    if(req.body.body.trim() === ''){
-        return res.status(400).json({error: "Must not be empty"});
-    }
-    const newComment = {
-        userName: req.user.userName,
-        competitionId: req.params.competitionId,
-        body: req.body.body,
-        createdAt: new Date().toISOString(),
-        userImage: req.user.imageUrl
-    };
-    
-    db.doc(`/competitions/${req.params.competitionId}`).get()
-        .then(doc => {
-            if(!doc.exists){
-                console.log("----------visited----------")
-                return res.status(404).json({error: "competition not found"});
-            }
-            return db.collection('comments').add(newComment);
-
-        }).then(() => {
-            res.json(newComment);
-        }).catch(err => {
-            console.log(err);
-            res.status(500).json({error: 'Something went wrong'});
-        }); 
 }

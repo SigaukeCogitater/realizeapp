@@ -6,9 +6,19 @@ import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware } from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
-import authReducer from './store/reducers/authReducer';
+import authReducer from './store/reducers/rootReducer';
+import { reduxFirestore, getFirestore} from 'redux-firestore'
+import { reactReduxFirebase, getFirebase} from 'react-redux-firebase'
+import config from './config'
 
-const store = createStore(authReducer, applyMiddleware(thunk));
+
+const store = createStore(authReducer, 
+    compose (
+        applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore})),
+        reduxFirestore(),
+        reactReduxFirebase()
+    )
+);
 
 ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
 

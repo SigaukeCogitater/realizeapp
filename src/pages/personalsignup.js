@@ -5,6 +5,12 @@ import axios from 'axios'
 class personalsignup extends React.Component {
     //constructor(props){
       //super(props);
+
+
+
+
+
+      //
       state = {
         id: "",
         phonenumber:"",
@@ -15,7 +21,7 @@ class personalsignup extends React.Component {
         birthday:"",
         pw: "",
         re_pw: "",
-        accountType: 1
+        accountType: 0
       };
       handlefirstname = e => {
         e.preventDefault();
@@ -125,7 +131,7 @@ class personalsignup extends React.Component {
 
       render(){
           return(
-              <form class="signUp">
+              <form className="signUp">
                   <h1 id = "font_set">Personal Sign up</h1>
                   <br/>
                   <div>

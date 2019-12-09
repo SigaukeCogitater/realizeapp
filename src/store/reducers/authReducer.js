@@ -1,11 +1,7 @@
-const initState = {
-    accountType: -1,
-    email: "",
-    userName: ""
-}
+const initState = {}
 
 const authReducer = (state = initState, action) => {
-    return {account: state}
+    return state
 }
 
 export default authReducer

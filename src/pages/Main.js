@@ -3,11 +3,10 @@ import {Link} from 'react-router-dom'
 import { connect } from 'react-redux'
 import Idea from './components/Idea'
 import axios from 'axios'
-// import { createIdea } from '../store/actions/ideaActions'
+
 
 class Main extends Component {
     render(){
-        console.log(this.props);
         return(
             <Fragment>
                 <NavigationBar/>
@@ -18,15 +17,11 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state);
     return {
-        auth: state.account
+        // auth: state.account
     };
 }
-// const mapStateToProps = (dispatch) =>{
-//     return{
-//         authenticate: (account) => dispatch(authenticate(account))
-//     }
-// }
 
 export class NavigationBar extends Component{
     render() {
