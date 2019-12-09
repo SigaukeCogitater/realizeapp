@@ -12,7 +12,7 @@ exports.getAllIdeas = (req, res) => {
                     
                     ideaId: doc.id,                    
                     body: doc.data().body,
-                    description: doc.data().description,
+                    title: doc.data().title,
                     category: doc.data().category,
                     createdAt: doc.data().createdAt,
                     likesCount: doc.data().likesCount,
@@ -49,7 +49,7 @@ exports.getAllUserIdeas = (req, res) => {
                     
                     ideaId: doc.id,                    
                     body: doc.data().body,
-                    description: doc.data().description,
+                    title: doc.data().title,
                     category: doc.data().category,
                     createdAt: doc.data().createdAt,
                     likesCount: doc.data().likesCount,
@@ -78,7 +78,7 @@ exports.postIdea = (req, res) => {
     const newIdea = {
         body: req.body.body,
         userName: req.user.userName,
-        description: req.body.description,
+        title: req.body.title,
         category: req.body.category,
         userImage: req.user.imageUrl,
         likesCount: 0,
